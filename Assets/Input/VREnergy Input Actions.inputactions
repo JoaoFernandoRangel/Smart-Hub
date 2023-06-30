@@ -1,0 +1,186 @@
+{
+    "name": "VREnergy Input Actions",
+    "maps": [
+        {
+            "name": "XRI LeftHand Teleport ",
+            "id": "c87eb0e9-8a7c-423b-bee3-5199277a78f7",
+            "actions": [
+                {
+                    "name": "Teleport Select",
+                    "type": "Value",
+                    "id": "a69c4580-d5d1-4b20-be9f-4db84d89116c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Teleport Activate",
+                    "type": "Value",
+                    "id": "b04f2681-eccd-4b5b-bf0f-f7edd5aa49b6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "Sector(directions=1,pressPoint=0.6)",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Teleport Cancel",
+                    "type": "Value",
+                    "id": "37891261-816d-47ac-a499-45f5d23c86f1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "Sector(directions=1)",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "148356cf-bc0e-478c-ab79-0caa1700cb8f",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick",
+                    "interactions": "Sector(directions=1,pressPoint=0.7)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2c4e83f-0d3f-41af-9916-22f72cc2506b",
+                    "path": "<ViveController>{LeftHand}/trackpadClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f32420e8-f744-4685-b2d9-60b69dae4429",
+                    "path": "<ValveIndexController>{LeftHand}/thumbstick",
+                    "interactions": "Sector(directions=1,pressPoint=0.7)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49ba1729-b96c-4aee-b46e-44fd201fe921",
+                    "path": "<XRController>{LeftHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8d9fe45-c858-48c1-a5dc-1da8da7b95d4",
+                    "path": "<XRController>{LeftHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "XRI RightHand Teleport",
+            "id": "43cefea1-07b5-4a0d-9271-10387ef5ed94",
+            "actions": [
+                {
+                    "name": "Teleport Select",
+                    "type": "Value",
+                    "id": "6983eb52-924c-4cb3-87fe-36fa329c4499",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Teleport Activate",
+                    "type": "Value",
+                    "id": "2230edbf-604a-4430-93f7-8ad56628aae6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "Sector(directions=1,pressPoint=0.6)",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Teleport Cancel",
+                    "type": "Value",
+                    "id": "e866e138-43da-4ffc-8611-a90e29c59af3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "Sector(directions=1)",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "62645bc2-e7eb-49cf-b2dc-f6d2b0ebb58a",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick",
+                    "interactions": "Sector(directions=1,pressPoint=0.7)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6bf116c2-5bba-4bc4-a2b6-f295e9434ad3",
+                    "path": "<ViveController>{RightHand}/trackpadClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98156001-8dd8-4361-8efc-89df63126752",
+                    "path": "<ValveIndexController>{RightHand}/thumbstick",
+                    "interactions": "Sector(directions=1,pressPoint=0.7)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c36c112-d103-4507-9325-a8eb8bfa6723",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d9d2cdc-8af0-4a74-833a-f537ba2c3683",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

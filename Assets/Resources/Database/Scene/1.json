@@ -1,0 +1,42 @@
+﻿{
+  "Id": 1,
+  "AddressableKey": "Scenes/Room-1.unity",
+  "SceneObjects": [
+    {
+      "AddressableKey": "Prefab/exemplo1.prefab",
+      "Position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "AddressableKey": "Prefab/exemplo2.prefab",
+      "Position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    }
+  ]
+}

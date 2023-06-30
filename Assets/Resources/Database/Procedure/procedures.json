@@ -1,0 +1,816 @@
+{
+  "procedures": [
+    {
+      "Id": 1,
+      "Name": "PRO - Inspecao",
+      "Description": "PRO - Inspecao",
+      "SceneId": -1,
+      "Scene": {
+        "Id": 1,
+        "AddressableKey": "Scenes/VRVasoRoom - Manuntencao Preventiva PRO",
+        "SceneObjects": []
+      },
+      "Requirements": [
+        {
+          "Id": "Pegar_Vaso",
+          "Description": "Pegar Vaso",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Vaso",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_Vaso",
+          "Description": "Colocar Vaso no lugar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Vaso",
+            "Receptor": "Mesa",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoEsgoto",
+          "Description": "Pegar Cano De Esgoto",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CanoEsgoto",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_CanoEsgoto",
+          "Description": "Colocar Cano de Esgoto",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "CanoEsgoto",
+            "Receptor": "SocketCanoEsgoto",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoHidraulico",
+          "Description": "Pegar Cano Hidraulico",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CanoHidraulico",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_CanoHidraulico",
+          "Description": "Colocar Cano Hidraulico",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "CanoHidraulico",
+            "Receptor": "SocketCanoHidraulico",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoAr",
+          "Description": "Pegar Cano de Ar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CaboPretoAr",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_CanoAr",
+          "Description": "Colocar Cano de Ar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "CaboPretoAr",
+            "Receptor": "SocketCaboPretoAr",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoCAN",
+          "Description": "Pegar Cano CAN",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CanoCAN",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_CanoCAR",
+          "Description": "Colocar Cano CAN",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "CanoCAN",
+            "Receptor": "SocketCanoCAN",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "VerificarCAN",
+          "Description": "Verificar se todas as luzes estão verdes no CAN",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "PainelCAN",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "ApertarBotaoDescarga",
+          "Description": "Apertar multipla vezes o botao da descarga",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "BotaoDescarga",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "InspecionarBlocodeV�lvulas",
+          "Description": " Inspecionar bloco de valvulas",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Disjuntor",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "ApertarBloco1",
+          "Description": " Apertar 1º bloco de valvulas com a chave Allen",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "AnaliseDis1",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "ApertarBloco2",
+          "Description": " Apertar 2º bloco de valvulas com a chave Allen",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "AnaliseDis2",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "ApertarBloco3",
+          "Description": " Apertar 3º bloco de valvulas com a chave Allen",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "AnaliseDis3",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "ApertarBloco4",
+          "Description": " Apertar 4º bloco de valvulas com a chave Allen",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "AnaliseDis4",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "ApertarBloco5",
+          "Description": " Apertar 5º bloco de valvulas com a chave Allen",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "AnaliseDis5",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "InpencionarDistribuidor",
+          "Description": "Inpencionar Distribuidor e verificar inspeção visual em geral (oxidação, trincas e vazamentos)",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Distribuidor",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "ApertarPorcaDistribuidor1",
+          "Description": " Apertar 1º porca do distribuidor com chave Allen",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Porca1",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "ApertarPorcaDistribuidor2",
+          "Description": " Apertar 2º porca do distribuidor com chave Allen",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Porca2",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "SoltarCanoAr",
+          "Description": " Tirar cano de ar do lugar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CaboPretoAr",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "ColocarCanoManometro",
+          "Description": "Colocar cano do manometro no lugar do cano de ar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Cabo Manometro",
+            "Receptor": "SocketCaboPretoAr",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "AjustarPressao",
+          "Description": "Ajustar pressão em 80 psi (5,5 bar). Levantar al�a e girar no sentido hor�rio para aumentar pressão, e sentido antihor�rio para diminuir",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Valvula",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "VerificarManometro",
+          "Description": "Verificar se manometro esta com a sua pressão em 80 psi",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Manometro",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "SoltarCanoManometro",
+          "Description": " Tirar cano do manometro do lugar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Cabo Manometro",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoAr",
+          "Description": "Pegar Cano de Ar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CaboPretoAr",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_CanoAr",
+          "Description": "Colocar Cano de Ar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "CaboPretoAr",
+            "Receptor": "SocketCaboPretoAr",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "InpencionarBicos",
+          "Description": "Verificar inspeção visual nos bicos",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Bico1",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "InpencionarBicos",
+          "Description": "Verificar inspeção visual nos bicos",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Bico2",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "InpencionarBicos",
+          "Description": "Verificar inspeção visual nos bicos",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Bico3",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "ApertarBico1",
+          "Description": " Limpar 1º bico de saida de agua com o calibrador 0,5 mm",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Bico1",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "ApertarBico2",
+          "Description": " Limpar 2º bico de saida de agua com o calibrador 0,5 mm",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Bico2",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "ApertarBico3",
+          "Description": " Limpar 3º bico de saida de agua com o calibrador 0,5 mm",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Bico3",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "VerificarFixaçãoMangueira",
+          "Description": " Verificar fixação do bico e mangueira (clipe fixador e braçadeira)",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Mangueira",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "InspecionarJoelhos",
+          "Description": "Inspecionar joelhos de borracha quanto a furos, desgaste e danos em gerais",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Joelho",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "VerificarSensorMagnético",
+          "Description": "Verificar se o sensor magnético está devidamente fixado na valvula comutadora",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "SensorMagnetico",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "VerificarIntegridadeTampa",
+          "Description": "Verificar integridade da tampa e do assento com relação a danos (trincas, quebra etc)",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Tampa",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "ApertarParafuso",
+          "Description": " Torquear os 8 parafusos de fixação da tampa e assento",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Parafuso",
+            "Interaction": "Apertar"
+          }
+        }
+
+
+
+      ]
+    },
+    {
+      "Id": 2,
+      "Name": "PRO - Remoção",
+      "Description": "PRO - Remoção",
+      "SceneId": -1,
+      "Scene": {
+        "Id": 2,
+        "AddressableKey": "Scenes/VRVasoRoom - Remocao",
+        "SceneObjects": []
+      },
+      "Requirements": [
+        {
+          "Id": "Verificar o LED verde",
+          "Description": "Verificar se o LED verde do botao de acionamento da descarga encontra-se ligado ",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "PDC",
+            "Interaction": "Olhar"
+          }
+        },
+        {
+          "Id": "Efetuar descarga",
+          "Description": "Efetuar descarga do vaso sanitario pressionando o botao de descarga certificando que haja ar comprimido.",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "BotaoDescarga",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "Pegar chave",
+          "Description": "Pegar chave quadrada para acessar o painel",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "ChavePainel",
+            "Interaction": "Pegar"
+          }
+        },
+
+        {
+          "Id": "Colocar chave no painel",
+          "Description": "Colocar a chave no painel",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "ChavePainel",
+            "Receptor": "ChavePainelSuperiorSocket",
+            "Interaction": "Colocar"
+          }
+        },
+        {
+          "Id": "Abrir painel",
+          "Description": "Abrir painel com a chave",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "PortinholaCima",
+            "Interaction": "Abrir"
+          }
+        },
+        {
+          "Id": "Interromper alimentacao",
+          "Description": "Fechar a valvula para interromper a alimentacao de agua",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Valvula",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "ApertarBotaoDescarga",
+          "Description": "Pressionar o botao de descarga ate observar que nao ha mais saida de agua pelos bicos do vaso.",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "BotaoDescarga",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "Pegar chave quadrada",
+          "Description": "Pegar a chave quadrada novamente para abrir a portinhola de baixo",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "ChavePainel",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar chave quadrada",
+          "Description": "Colocar Chave quadrada na fechadura",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "ChavePainel",
+            "Receptor": "ChavePainelInferiorSocket",
+            "Interaction": "Colocar"
+          }
+        },
+        {
+          "Id": "Abrir Tampa",
+          "Description": "`Com uso de uma chave quadrada, deve-se girar a fechadura e abrir a tampa.",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "PortinholaBaixo",
+            "Interaction": "Abrir"
+          }
+        },
+        {
+          "Id": "Pegar_CanoAr",
+          "Description": "Pegar Cano de Ar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CaboPretoAr",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoHidraulico",
+          "Description": "Pegar Cano Hidraulico",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CanoHidraulico",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Pegar Chave Allen",
+          "Description": "Pegar Chave Allen",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Chave Allen",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Retirar Vaso Parafuso 1",
+          "Description": " Retirar parafuso 1 para soltar vaso da cupuda de fibra",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Parafuso1",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "Retirar Vaso Parafuso 2",
+          "Description": " Retirar parafuso 2 para soltar vaso da cupula de fibra",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Parafuso2",
+            "Interaction": "Apertar"
+          }
+        },
+        {
+          "Id": "Pegar_Vaso",
+          "Description": "Pegar Vaso",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Vaso",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_Vaso",
+          "Description": "Apoiar o vaso na cupula de fibra",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Vaso",
+            "Receptor": "ParteDeCimaSocket",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoCAN",
+          "Description": "Pegar Cano CAN",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CanoCAN",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Abrir porta",
+          "Description": "Abrir totalmente a porta, mantendo-se no interior do banheiro.",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Porta",
+            "Interaction": "Abrir"
+          }
+        },
+        {
+          "Id": "Colocar_Vaso",
+          "Description": "Pegar o vaso e colocar no carrinho fora do vagão",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Vaso",
+            "Receptor": "MesaSocket",
+            "Interaction": "Colocar"
+          }
+        }
+
+
+
+
+      ]
+    },
+    {
+      "Id": 3,
+      "Name": "PRO - Recolocação",
+      "Description": "PRO - Recolocação",
+      "SceneId": -1,
+      "Scene": {
+        "Id": 3,
+        "AddressableKey": "Scenes/VRVasoRoom - Recolocacao",
+        "SceneObjects": []
+      },
+      "Requirements": [
+
+        {
+          "Id": "Abrir Tampa",
+          "Description": "`Com uso de uma chave quadrada, deve-se girar a fechadura e abrir a tampa.",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "PortinholaBaixo",
+            "Interaction": "Abrir"
+          }
+        },
+        {
+          "Id": "Pegar_CanoCAN",
+          "Description": "Pegar Cano CAN",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CanoCAN",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_CanoCAR",
+          "Description": "Colocar Cano CAN",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "CanoCAN",
+            "Receptor": "SocketCanoCAN",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Pegar_Vaso",
+          "Description": "Pegar Vaso",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "Vaso",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_Vaso",
+          "Description": "Apoiar o vaso na cupula de fibra",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Vaso",
+            "Receptor": "ParteDeCimaSocket",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoHidraulico",
+          "Description": "Pegar Cano Hidraulico",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CanoHidraulico",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_CanoHidraulico",
+          "Description": "Colocar Cano Hidraulico",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "CanoHidraulico",
+            "Receptor": "SocketCanoHidraulico",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Pegar_CanoAr",
+          "Description": "Pegar Cano de Ar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "CaboPretoAr",
+            "Interaction": "Pegar"
+          }
+        },
+        {
+          "Id": "Colocar_CanoAr",
+          "Description": "Colocar Cano de Ar",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "CaboPretoAr",
+            "Receptor": "SocketCaboPretoAr",
+            "Interaction": "Entrar"
+          }
+        },
+        {
+          "Id": "Efetuar descarga",
+          "Description": "Efetuar descarga do vaso sanitario pressionando o botao de descarga.",
+          "Requirements": [],
+          "ExecutionType": "Action",
+          "Action": {
+            "Activator": "Operador",
+            "Receptor": "BotaoDescarga",
+            "Interaction": "Apertar"
+          }
+        }
+
+
+
+
+      ]
+    }
+  ]
+}
+  

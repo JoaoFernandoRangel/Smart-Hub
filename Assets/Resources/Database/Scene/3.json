@@ -1,0 +1,44 @@
+﻿{
+  "Id": 3,
+  "AddressableKey": "Scenes/Room.unity",
+  "SceneObjects": [
+    {
+      "UnityId": "Cube01",
+      "AddressableKey": "Prefabs/Cube.prefab",
+      "Position": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "Rotation": {
+        "x": 45,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "UnityId": "Cube02",
+      "AddressableKey": "Prefabs/Cube.prefab",
+      "Position": {
+        "x": -5,
+        "y": 0,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    }
+  ]
+}

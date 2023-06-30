@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4802924494992016365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.191
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993074, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_Name
+      value: Teleportation Anchor With Fade (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707429489965993074, guid: a13c1c0067c654e4da035d93112bb42d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4707429489965993073, guid: a13c1c0067c654e4da035d93112bb42d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a13c1c0067c654e4da035d93112bb42d, type: 3}
+--- !u!1 &284655106016317343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4707429489965993074, guid: a13c1c0067c654e4da035d93112bb42d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4802924494992016365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &284655106016317341 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4707429489965993072, guid: a13c1c0067c654e4da035d93112bb42d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4802924494992016365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3513973318964196134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8242518038374133963, guid: a13c1c0067c654e4da035d93112bb42d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4802924494992016365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5253109665779721439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284655106016317343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d54545363feb0f40a6005bd0785d1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 2
+  m_SelectMode: 0
+  m_CustomReticle: {fileID: 0}
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3513973318964196134}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3513973318964196134}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectCanceled:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_TeleportationProvider: {fileID: 0}
+  m_MatchOrientation: 0
+  m_TeleportTrigger: 0
+  m_Teleporting:
+    m_PersistentCalls:
+      m_Calls: []
+  m_TeleportAnchorTransform: {fileID: 284655106016317341}
+  screenFade: {fileID: 0}
+  onEnterTeleport:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitTeleport:
+    m_PersistentCalls:
+      m_Calls: []

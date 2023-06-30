@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6188840880355550582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6188840880355550576}
+  - component: {fileID: 1588540679}
+  m_Layer: 0
+  m_Name: RightHandPresence 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6188840880355550576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188840880355550582}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1588540679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188840880355550582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76323b5fb0d13474d9b9f677f2d4f845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showController: 0
+  controllerPrefabs:
+  - {fileID: 7634514334346526944, guid: 2a65f0c15f88dc645b2cffeaa7bb1b0c, type: 3}
+  - {fileID: 4245457492171364763, guid: 883b05ddaec91dc43863f42a3f2fe037, type: 3}
+  - {fileID: 4024951872544157354, guid: 4def151375a8087479df37297f617114, type: 3}
+  - {fileID: 7523567926693483842, guid: ead5fe875f5230b469a43f4d50aaa007, type: 3}
+  - {fileID: 5191550869875014123, guid: b899bc2ce3d209b41a7f70cca818f47a, type: 3}
+  - {fileID: 4818293155451206850, guid: 1919a894f64f7234d82a03c20f89b56e, type: 3}
+  - {fileID: 357722411443781339, guid: 8c144ee509b4594458c5852c7677d59c, type: 3}
+  - {fileID: 5928091942230486030, guid: 20ab15407fb90df46b63832d608b8a56, type: 3}
+  - {fileID: 6654152787936889342, guid: 2598eca98abb9a842bc4d00ae4b30362, type: 3}
+  controllerCharacteristics: 0
+  handModelPrefab: {fileID: 5686134208185362930, guid: 3a608e2cdda702d49bb75c431d0be339,
+    type: 3}
+  primaryControllerAxis: {x: 0, y: 0}
+  triggerButton: 0
