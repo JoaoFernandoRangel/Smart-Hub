@@ -2,37 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Estados do pistao
+public enum PistaoState
+{ ParadoInicio = 1, EmMovimento = 2, FechadoFinal = 3, Erro = 4 };
+
 public class AddForcePiston : MonoBehaviour
 {
+    //variaveis de forca
 
-    [SerializeField] private Vector3 firstPosition;
-    [SerializeField] private Vector3 secondPosition;
-    [SerializeField] Rigidbody rb;
-    [SerializeField] float force = 1000;
-    [SerializeField] bool isFirstState = true;
-    [SerializeField] Vector3 forceDirection;
-    [SerializeField] int state;
-    private void FixedUpdate()
+    [Header("Forca")]
+    [SerializeField] float maxValue = 0.17f;
+    [SerializeField] float minValue = 0;
+    [SerializeField] float lowerLimit;
+    [SerializeField] float stiffness;
+    [SerializeField] float damping;
+    [SerializeField] float forceLimit;
+
+    ArticulationBody articulation;
+    ArticulationDrive Ydrive;
+    [Header("Tracking")]
+    [SerializeField]
+    int intPistaoState;
+    [SerializeField]
+    PistaoState pistaoState;
+
+    public PistaoState PistaoState { get => pistaoState; set => pistaoState = value; }
+    public int IntPistaoState { get => intPistaoState; set => intPistaoState = value; }
+
+    private void Start()
     {
-        IntState(state);
-        Vector3 targetPosition = isFirstState ? firstPosition : secondPosition;
-        Vector3 forceDirection = (targetPosition - transform.position).normalized;
-        rb.AddForce(forceDirection * force, ForceMode.Force);
+        articulation = GetComponent<ArticulationBody>();
+
+        Ydrive.upperLimit = maxValue;
+        Ydrive.lowerLimit = lowerLimit;
+        Ydrive.stiffness = stiffness;
+        Ydrive.damping = damping;
+        Ydrive.lowerLimit = lowerLimit;
+        Ydrive.forceLimit = forceLimit;
+
+        articulation.yDrive = Ydrive;
     }
-    [ContextMenu("ChangeState")]
-    public void ChangeState()
+    private void Update()
     {
-        isFirstState = !isFirstState;
-    }
-    public void IntState(int state)
-    {
-        if (state == 1)
+        //
+
+        if (pistaoState == PistaoState.ParadoInicio)
         {
-            isFirstState = true;
+            Ydrive.target = 0;
+            articulation.yDrive = Ydrive;
         }
-        else if (state == 3)
+        else if (pistaoState == PistaoState.FechadoFinal)
         {
-            isFirstState = false;
+            Ydrive.target = 1;
+            articulation.yDrive = Ydrive;
+        }
+
+    } //chamar esse metodo para sincronizar e mudar o estado
+
+    public void ChangePistaoState(int intPistaoState)
+    {
+        if (intPistaoState == 1)
+        {
+            pistaoState = PistaoState.ParadoInicio;
+        }
+        if (intPistaoState == 3)
+        {
+            pistaoState = PistaoState.FechadoFinal;
         }
     }
+    
 }

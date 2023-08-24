@@ -14,6 +14,7 @@ public class EsteiraScript : MonoBehaviour
     [SerializeField]
 
     Rigidbody rb;
+    [SerializeField]
     bool empurrando = false;
     public float Velocidade { get => velocidade; set => velocidade = value; }
     private Vector3 directionz;
