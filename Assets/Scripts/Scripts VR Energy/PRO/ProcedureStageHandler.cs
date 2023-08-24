@@ -138,7 +138,7 @@ namespace VREnergy.PRO
 
         public void NewAction(string activator, string receptor, string interaction)
         {
-            Debug.Log($"Activator: {activator}, Receptor: {receptor}, Interaction: {interaction}");
+            //Debug.Log($"Activator: {activator}, Receptor: {receptor}, Interaction: {interaction}");
             NewAction(new PROAction(activator, receptor, interaction));
         }
 

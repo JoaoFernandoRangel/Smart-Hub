@@ -4,68 +4,72 @@ using UnityEngine;
 
 public class PistaoScript : MonoBehaviour
 {
+    public Animator animator;
+    public GameObject pistao;
+    public float speed = 1.0f;
     [SerializeField]
-    private GameObject pistonObject;
 
+    private int situacao = 1;
+    private Vector3 posicaoOriginal;
     [SerializeField]
-    Animator pistonAnim;
+    private Vector3 posicaoMaxima;
 
-    EventAnimationScript evasdent;
-    public float speed = 5f;
+    private Vector3 posicaoMinima;
 
-    private Vector3 originalPosition;
-
-    private bool isMovingForward = false;
-    public int stateAtual;
-
-    private void Start()
+    void Start()
     {
-        originalPosition = pistonObject.transform.position;
-
+        // Salva a posição original do pistão
+        posicaoOriginal = pistao.transform.position;
     }
 
-    public void MoverParaFrente()
+    void Update()
     {
-        isMovingForward = true;
-    }
-    public void Mover()
-    {
-        isMovingForward = !isMovingForward;
-    }
-
-    public void MoverParaPosicaoOriginal()
-    {
-        isMovingForward = false;
-    }
-
-    private void Update()
-    {
-        // Get the current state information
-        switch (stateAtual)
+        if (animator != null && animator.isActiveAndEnabled)
         {
-            case 1:
-                
-                break;
-            case 2:
-                Mover();
-                break;
-            case 3:
-                
-                break;
-            default:
-                break;
-        }
-        if (isMovingForward)
-        {
-            float step = speed * Time.deltaTime;
-            Vector3 targetPosition = new Vector3(pistonObject.transform.position.x, pistonObject.transform.position.y, pistonObject.transform.position.z + step);
-            pistonObject.transform.position = Vector3.MoveTowards(pistonObject.transform.position, targetPosition, step);
-        }
-        else
-        {
-            float step = speed * Time.deltaTime;
-            pistonObject.transform.position = Vector3.MoveTowards(pistonObject.transform.position, originalPosition, step);
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+            string currentStateName = stateInfo.shortNameHash.ToString();
+
+            Debug.Log("Current State: " + currentStateName);
+
+            if (situacao == 2)
+            {
+                MovePistao(posicaoMaxima);
+            }
+            else if (situacao == 3)
+            {
+                MovePistao(posicaoMinima);
+            }
+            else if (situacao == 1)
+            {
+                MovePistao(posicaoOriginal);
+            }
         }
     }
+   
+    public void SetSituacao(int value)
+    {
+        situacao = value;
+    }
+    public void SetPosicaoMaxima(Vector3 position)
+    {
+        posicaoMaxima = position;
+    }
 
+    public void SetPosicaoMinima(Vector3 position)
+    {
+        posicaoMinima = position;
+    }
+    public void Set()
+    {
+        SetPosicaoMaxima(posicaoMaxima);
+    }
+    public void MovePistao(Vector3 targetPosition)
+    {
+        // Move o pistão em direção à posição alvo usando interpolação linear
+        float step = speed * Time.deltaTime;
+        pistao.transform.position = Vector3.Lerp(pistao.transform.position, targetPosition, step);
+    }
 }
+
+

@@ -113,7 +113,7 @@ namespace VRWorkshop.XR
         {
             rayInteractor.enabled = false;
             _isTeleportActive = false;
-            lineVisualInteractor.reticle.SetActive(false);
+            //lineVisualInteractor.reticle.SetActive(false);
         }
     }
     

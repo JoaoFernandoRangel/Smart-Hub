@@ -44,6 +44,10 @@ public class TrackingScript : MonoBehaviour
         {
             mqtt.Conectar();
         }
+        else
+        {
+            print("nao conectado");
+        }
 
         if (mqtt.pistao.Count > 0)
         {
@@ -122,7 +126,7 @@ class Mqtt : MonoBehaviour
     //######################################################################################################
 
     //MÉTODOS DA CLASSE
-    public Mqtt(string tpc = "topic", int prt = 8883, string usr = "DigitalTwin", string pss = "Digital7w1n", string svr = "be7ffc1c90054731998da6666ee7b112.s2.eu.hivemq.cloud")
+    public Mqtt(string tpc = "topic", int prt = 8883, string usr = "DigitalTwin", string pss = "", string svr = "")
     {
         // Adicionando as credenciais nas variáveis
         user = usr; pass = pss; server = svr; port = prt; topic = tpc;
