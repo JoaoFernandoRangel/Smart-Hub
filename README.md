@@ -42,7 +42,7 @@
   </section>
   <footer>
     <h2>RoadMap</h2>
-    <a href="mailto:seu-email@example.com">[gcordeirocarvalho97@gmail.com](https://docs.google.com/document/d/1L2Nz9DOT_yKBMqAgQmpV6oSd9dj7IBzvcuQUAF_lGlI/edit?usp=sharing)https://docs.google.com/document/d/1L2Nz9DOT_yKBMqAgQmpV6oSd9dj7IBzvcuQUAF_lGlI/edit?usp=sharing</a>
+    <a href="https://docs.google.com/document/d/1L2Nz9DOT_yKBMqAgQmpV6oSd9dj7IBzvcuQUAF_lGlI/edit?usp=sharing">https://docs.google.com/document/d/1L2Nz9DOT_yKBMqAgQmpV6oSd9dj7IBzvcuQUAF_lGlI/edit?usp=sharing</a>
   </footer>
 </body>
 
