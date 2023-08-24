@@ -5,6 +5,8 @@ using UnityEngine;
 //Estados do pistao
 public enum PistaoState
 { ParadoInicio = 1, EmMovimento = 2, FechadoFinal = 3, Erro = 4 };
+public enum Drive
+{ XDrive = 1, YDrive = 2, ZDrive = 3};
 
 public class AddForcePiston : MonoBehaviour
 {
@@ -17,14 +19,16 @@ public class AddForcePiston : MonoBehaviour
     [SerializeField] float stiffness;
     [SerializeField] float damping;
     [SerializeField] float forceLimit;
-
+    [SerializeField]
+    Drive driveState;
     ArticulationBody articulation;
-    ArticulationDrive Ydrive;
+    ArticulationDrive drive;
     [Header("Tracking")]
     [SerializeField]
     int intPistaoState;
     [SerializeField]
     PistaoState pistaoState;
+
 
     public PistaoState PistaoState { get => pistaoState; set => pistaoState = value; }
     public int IntPistaoState { get => intPistaoState; set => intPistaoState = value; }
@@ -33,28 +37,47 @@ public class AddForcePiston : MonoBehaviour
     {
         articulation = GetComponent<ArticulationBody>();
 
-        Ydrive.upperLimit = maxValue;
-        Ydrive.lowerLimit = lowerLimit;
-        Ydrive.stiffness = stiffness;
-        Ydrive.damping = damping;
-        Ydrive.lowerLimit = lowerLimit;
-        Ydrive.forceLimit = forceLimit;
+        drive.upperLimit = maxValue;
+        drive.lowerLimit = lowerLimit;
+        drive.stiffness = stiffness;
+        drive.damping = damping;
+        drive.lowerLimit = lowerLimit;
+        drive.forceLimit = forceLimit;
 
-        articulation.yDrive = Ydrive;
+        CheckTheArticulationDrive();
+
     }
+
+    private void CheckTheArticulationDrive()
+    {
+        if (driveState == Drive.XDrive)
+        {
+            articulation.xDrive = drive;
+        }
+
+        if (driveState == Drive.YDrive)
+        {
+            articulation.yDrive = drive;
+        }
+        if (driveState == Drive.ZDrive)
+        {
+            articulation.zDrive = drive;
+        }
+    }
+
     private void Update()
     {
         //
 
         if (pistaoState == PistaoState.ParadoInicio)
         {
-            Ydrive.target = 0;
-            articulation.yDrive = Ydrive;
+            drive.target = 0;
+            CheckTheArticulationDrive();
         }
         else if (pistaoState == PistaoState.FechadoFinal)
         {
-            Ydrive.target = 1;
-            articulation.yDrive = Ydrive;
+            drive.target = 1;
+            CheckTheArticulationDrive();
         }
 
     } //chamar esse metodo para sincronizar e mudar o estado
