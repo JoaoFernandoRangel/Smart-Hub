@@ -12,8 +12,10 @@ public class EsteiraScript : MonoBehaviour
     [SerializeField]
     SliderEsteiraUI sliderEsteiraUI;
     [SerializeField]
-
     Rigidbody rb;
+
+    [SerializeField]
+    List<Rigidbody> rbList;
     [SerializeField]
     bool empurrando = false;
     public float Velocidade { get => velocidade; set => velocidade = value; }
@@ -38,7 +40,7 @@ public class EsteiraScript : MonoBehaviour
         if (other.gameObject.CompareTag("Copo"))
         {
             other.TryGetComponent<Rigidbody>(out rb);
-            
+            rbList.Add(rb);
             empurrando = true;
         }
     }
