@@ -49,9 +49,9 @@ class Message
         for(int i = 0; i<pist.Length; i+=3)
         {
             int situacao = 4;  // 4 -> erro         
-            if(pist[1+i] == '1' && pist[2+i] == '0') situacao = 1; // parado inicio
-            if(pist[1+i] == '0' && pist[2+i] == '0') situacao = 2; // em movimento
-            if(pist[1+i] == '0' && pist[2+i] == '1') situacao = 3; // parado final
+            if(pist[1+i] == '0' && pist[2+i] == '1') situacao = 1; // parado inicio
+            if(pist[1+i] == '1' && pist[2+i] == '1') situacao = 2; // em movimento
+            if(pist[1+i] == '1' && pist[2+i] == '0') situacao = 3; // parado final
 
             pistao.Add( ((char)('A'+ i/3)) , situacao);
         }

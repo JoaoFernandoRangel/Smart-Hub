@@ -52,12 +52,12 @@ public class TrackingScript : MonoBehaviour
         if (mqtt.pistao.Count > 0)
         {
             mensagem = mqtt.pistao.Last();
-            
+            print(mensagem);
             if (lastPis != $"{mqtt.pistao.Count} - {mensagem}")
             {
                 lastPis = $"{mqtt.pistao.Count} - {mensagem}";
 
-                print(mensagem);
+               // print(mensagem);
 
 
                 pistao1 = mensagem.pistao['A'];
@@ -126,7 +126,7 @@ class Mqtt : MonoBehaviour
     //######################################################################################################
 
     //MÉTODOS DA CLASSE
-    public Mqtt(string tpc = "topic", int prt = 8883, string usr = "DigitalTwin", string pss = "", string svr = "")
+    public Mqtt(string tpc = "topic", int prt = 8883, string usr = "DigitalTwin", string pss = "Digital7w1n", string svr = "be7ffc1c90054731998da6666ee7b112.s2.eu.hivemq.cloud")
     {
         // Adicionando as credenciais nas variáveis
         user = usr; pass = pss; server = svr; port = prt; topic = tpc;
