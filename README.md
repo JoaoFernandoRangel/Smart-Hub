@@ -41,7 +41,8 @@
     </div>
   </section>
   <footer>
-    <p>Obrigado pelo seu interesse no projeto Smart Hub! Suas contribuições e insights são muito apreciados. Juntos, vamos transformar os processos industriais com tecnologia.</p>
+    <h2>RoadMap</h2>
+    <a href="https://docs.google.com/document/d/1L2Nz9DOT_yKBMqAgQmpV6oSd9dj7IBzvcuQUAF_lGlI/edit?usp=sharing">https://docs.google.com/document/d/1L2Nz9DOT_yKBMqAgQmpV6oSd9dj7IBzvcuQUAF_lGlI/edit?usp=sharing</a>
   </footer>
 </body>
 
