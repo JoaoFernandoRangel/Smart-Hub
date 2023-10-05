@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game Menu.unity
+    path: Assets/Scenes/Menu/Game Menu.unity
     guid: 158a7c7ce7dae6246941aedfcda758bf
   - enabled: 1
-    path: Assets/Scenes/Game No Tracking.unity
+    path: Assets/Scenes/Application/Game No Tracking.unity
     guid: b8dd18009a45d02488b37b0c26fbffd9
   - enabled: 1
-    path: Assets/Scenes/Game Tracking.unity
+    path: Assets/Scenes/Application/Game Tracking.unity
     guid: 71a243fa7b5e0d04793428aa1ba3318f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b2314a385e35b7841b09bebea1c7dab1,

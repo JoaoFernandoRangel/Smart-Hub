@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.gemserk.selectionhistory": {
+      "version": "https://github.com/acoppes/unity-history-window.git#1.1.13",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e57c0b1d6da317a4eacaa47815478cc773694b91"
+    },
+    "com.nobi.roundedcorners": {
+      "version": "https://github.com/kirevdokimov/Unity-UI-Rounded-Corners.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "88623988179d35ce2da93b7740d6e7be59fcc971"
+    },
     "com.unity.addressables": {
       "version": "1.18.19",
       "depth": 0,
