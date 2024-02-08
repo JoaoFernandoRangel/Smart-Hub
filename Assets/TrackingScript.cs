@@ -58,7 +58,7 @@ public class TrackingScript : MonoBehaviour
         foreach (var topic in topics)
         {
             client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
-            print($"Conectado ao tópico: {topic}");
+            print($"Conectado ao tï¿½pico: {topic}");
         }
     }
 
@@ -68,12 +68,12 @@ public class TrackingScript : MonoBehaviour
         string topic = e.Topic;
         string message = Encoding.UTF8.GetString(e.Message);
 
-        // Parse the received message and separate values for pistões
+        // Parse the received message and separate values for pistï¿½es
         if (topic == "pistao" && message.Contains("PISTAO"))
         {
             string[] msgParts = message.Split(new[] { "%%", "%" }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Extract values for pistões
+            // Extract values for pistï¿½es
             if (msgParts.Length >= 3)
             {
                 for (int i = 0; i < msgParts[2].Length; i += 3)
@@ -83,15 +83,16 @@ public class TrackingScript : MonoBehaviour
 
                     if (char.IsLetter(pistaoName) && int.TryParse(pistaoValueStr, out int pistaoValue))
                     {
-                        // Update Serialized Fields for each pistão
+                        // Update Serialized Fields for each pistï¿½o
                         UpdatePistaoValues(pistaoName, pistaoValueStr);
                         // Add the parsed value to the dictionary
                         // Print the received message and separated values
-                        print($"Pistão {pistaoName} recebe {pistaoValueStr}");
+                        
+                        //print($"Pistï¿½o {pistaoName} recebe {pistaoValueStr}");
                     }
                     else
                     {
-                        print($"Error parsing Pistão {pistaoName} value.");
+                        //print($"Error parsing Pistï¿½o {pistaoName} value.");
                     }
                 }
             }
@@ -99,13 +100,15 @@ public class TrackingScript : MonoBehaviour
         else
         {
             // Print the received message for other topics
-            print($"Received message on topic '{topic}': {message}");
+            
+            
+            //print($"Received message on topic '{topic}': {message}");
         }
     }
 
     private void UpdatePistaoValues(char pistaoName, string pistaoValue)
     {
-        // Update Serialized Fields for each pistão
+        // Update Serialized Fields for each pistï¿½o
         switch (pistaoName)
         {
             case 'A':
@@ -121,7 +124,7 @@ public class TrackingScript : MonoBehaviour
                 PistaoD = pistaoValue;
                 break;
             default:
-                print($"Unknown Pistão: {pistaoName}");
+                print($"Unknown Pistï¿½o: {pistaoName}");
                 break;
         }
 
@@ -162,7 +165,7 @@ public class TrackingScript : MonoBehaviour
 
 
 
-      PISTÕES HORIZONTAIS:
+      PISTï¿½ES HORIZONTAIS:
 
         01 - PISTAO PARA TRAS
         11 - EM MOVIMENTO
@@ -175,7 +178,7 @@ public class TrackingScript : MonoBehaviour
       TOPICO GARRA
 
         tem um topico chamado garra-POS
-        x y z e r da garra, sendo r a rotação
+        x y z e r da garra, sendo r a rotaï¿½ï¿½o
 
       
 
@@ -195,7 +198,7 @@ public class TrackingScript : MonoBehaviour
 
 
 
-// Credenciais de conexão
+// Credenciais de conexï¿½o
 // string user = "DigitalTwin";
 // string pass = "Digital7w1n";
 // string server = "dd6e8d1cc8524360a537e7db4e5924f8.s2.eu.hivemq.cloud";
@@ -276,7 +279,7 @@ private void Update()
 CODIGO ANTIGO
 class Mqtt : MonoBehaviour
 {
-    //DADOS DE CONEXÃO COM O SERVIDOR
+    //DADOS DE CONEXï¿½O COM O SERVIDOR
     public string user { private set; get; }
     public string pass { private set; get; }
     public string server { private set; get; }
@@ -284,17 +287,17 @@ class Mqtt : MonoBehaviour
     public string topic { private set; get; }
     public MqttClient client { private set; get; }
 
-    //VARIÁVEIS DE FUNCIONAMENTO
-    public bool msgToReadPis { private set; get; } //Retorna se há mensagens não "lidas" do pistao
-    public bool msgToReadPos { private set; get; } //Retorna se há mensagens não "lidas" da posicao
+    //VARIï¿½VEIS DE FUNCIONAMENTO
+    public bool msgToReadPis { private set; get; } //Retorna se hï¿½ mensagens nï¿½o "lidas" do pistao
+    public bool msgToReadPos { private set; get; } //Retorna se hï¿½ mensagens nï¿½o "lidas" da posicao
 
     //private static readonly List<Message> messages = new List<Message>();
 
-    //Lista que armazena as mensagens do pistão
+    //Lista que armazena as mensagens do pistï¿½o
     private List<Message> Pistao = new List<Message>();
 
 
-    public List<Message> pistao // 0 -> timestamp, 1 -> pistão, 2 -> giroscópio
+    public List<Message> pistao // 0 -> timestamp, 1 -> pistï¿½o, 2 -> giroscï¿½pio
     {
         get
         {
@@ -305,7 +308,7 @@ class Mqtt : MonoBehaviour
 
     //Lista que armazena as mensagens de posicao
     private List<Message> Posicao = new List<Message>();
-    public List<Message> posicao // 0 -> timestamp, 1 -> pistão, 2 -> giroscópio
+    public List<Message> posicao // 0 -> timestamp, 1 -> pistï¿½o, 2 -> giroscï¿½pio
     {
         get
         {
@@ -316,13 +319,13 @@ class Mqtt : MonoBehaviour
 
     //######################################################################################################
 
-    //MÉTODOS DA CLASSE
+    //Mï¿½TODOS DA CLASSE
     public Mqtt(string tpc = "pistao", int prt = 8883, string usr = "DigitalTwin", string pss = "Digital7w1n", string svr = "dd6e8d1cc8524360a537e7db4e5924f8.s2.eu.hivemq.cloud")
     {
-        // Adicionando as credenciais nas variáveis
+        // Adicionando as credenciais nas variï¿½veis
         user = usr; pass = pss; server = svr; port = prt; topic = tpc;
 
-        // criar uma nova instância do cliente MQTT
+        // criar uma nova instï¿½ncia do cliente MQTT
         X509Certificate caCert = X509Certificate.CreateFromCertFile("isrgrootx1.pem");
         client = new MqttClient(server, port, true, caCert, null, MqttSslProtocols.TLSv1_2);
         client.MqttMsgPublishReceived += client_MqttMsgPublishReceived; // manipulador para o recebimento de mensagens
@@ -331,7 +334,7 @@ class Mqtt : MonoBehaviour
 
     public void Conectar()
     {
-        // conectar ao broker MQTT e ao tópico
+        // conectar ao broker MQTT e ao tï¿½pico
         int retries = 0;
 
         while (!client.IsConnected)
@@ -341,13 +344,13 @@ class Mqtt : MonoBehaviour
 
             if (retries > 10)
             {
-                print("Erro De Conexão");
+                print("Erro De Conexï¿½o");
                 break;
             }
         }
 
         client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
-        print("Conectado ao tópico.");
+        print("Conectado ao tï¿½pico.");
     }
 
     private void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
