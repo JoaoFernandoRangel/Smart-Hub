@@ -15,42 +15,26 @@ MonoBehaviour:
   selectionHistory:
     _history:
     - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-3714428087035712068-0
+      sceneName: 
+      scenePath: 
+      globalObjectId: GlobalObjectId_V1-2-00000000000000000000000000000000-733647445-0
     - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-662379587-0
-    - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-606054793-0
-    - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-670620245-0
-    - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-3714428087035712068-0
-    - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-670620245-0
-    - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-919132149155446097-2013037768
-    - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-9176321635560432853-1117095546
-    - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-919132149155446097-2013037768
-    - reference: {fileID: 0}
-      sceneName: Game Tracking
-      scenePath: Assets/Scenes/Application/Game Tracking.unity
-      globalObjectId: GlobalObjectId_V1-2-71a243fa7b5e0d04793428aa1ba3318f-9176321635560432853-8329898139486421310
+      sceneName: 
+      scenePath: 
+      globalObjectId: GlobalObjectId_V1-2-00000000000000000000000000000000-609317137-0
+    - reference: {fileID: 11500000, guid: ceb91ed317f9c094883ef0095421d355, type: 3}
+      sceneName: 
+      scenePath: 
+      globalObjectId: 
+    - reference: {fileID: 11500000, guid: 38acd18b77557af4a8bbd8294390c96a, type: 3}
+      sceneName: 
+      scenePath: 
+      globalObjectId: 
+    - reference: {fileID: 11500000, guid: 646c6a306ec385a4d9686615b42d04f6, type: 3}
+      sceneName: 
+      scenePath: 
+      globalObjectId: 
+    - reference: {fileID: 102900000, guid: a27b9b8648a580540988295889751822, type: 3}
+      sceneName: 
+      scenePath: 
+      globalObjectId: 
