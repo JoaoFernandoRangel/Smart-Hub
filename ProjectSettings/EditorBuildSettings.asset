@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Application/Game Tracking.unity
     guid: 71a243fa7b5e0d04793428aa1ba3318f
+  - enabled: 1
+    path: Assets/Scenes/Application/Game Video Demo.unity
+    guid: 2e3d2a7996b3cd441aad408b3716d7fd
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b2314a385e35b7841b09bebea1c7dab1,
       type: 2}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -9,80 +10,270 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 
 public class TrackingScript : MonoBehaviour
 {
-    // Credenciais de conexão
-    // string user = "DigitalTwin";
-    // string pass = "Digital7w1n";
-    // string server = "be7ffc1c90054731998da6666ee7b112.s2.eu.hivemq.cloud";
-    // int port = 8883;
+    private MqttClient client;
 
-    Message mensagem;
-    string lastPis = "";
-    string lastPos = "";
-    Mqtt mqtt;
-    [SerializeField]
-    int pistao1 = 0;
-    [SerializeField]
-    int pistao2 = 0;
-    [SerializeField]
-    int pistao3 = 0;
-    [SerializeField]
-    int pistao4 = 0;
+    // Change these according to your MQTT broker details
+    private string brokerAddress = "dd6e8d1cc8524360a537e7db4e5924f8.s2.eu.hivemq.cloud";
+    private int brokerPort = 8883;
+    private string username = "DigitalTwin";
+    private string password = "Digital7w1n";
+    private string[] topics = { "pistao", "garra" };  // Add more topics as needed
 
-    public int Pistao1 { get => pistao1; set => pistao1 = value; }
-    public int Pistao2 { get => pistao2; set => pistao2 = value; }
-    public int Pistao3 { get => pistao3; set => pistao3 = value; }
-    public int Pistao4 { get => pistao4; set => pistao4 = value; }
+    [SerializeField]
+    private string pistaoA;
+    [SerializeField]
+    private string pistaoB;
+    [SerializeField]
+    private string pistaoC;
+    [SerializeField]
+    private string pistaoD;
+
+    public string PistaoA { get => pistaoA; set => pistaoA = value; }
+    public string PistaoB { get => pistaoB; set => pistaoB = value; }
+    public string PistaoC { get => pistaoC; set => pistaoC = value; }
+    public string PistaoD { get => pistaoD; set => pistaoD = value; }
+
+    public event Action<char, string> PistaoValueChanged;
+
+
 
     private void Start()
     {
-        mqtt = new Mqtt();
+        // Create a new instance of the MqttClient
+        client = new MqttClient(brokerAddress, brokerPort, true, null, null, MqttSslProtocols.TLSv1_2);
 
+        // Register to the events
+        client.MqttMsgPublishReceived += Client_MqttMsgPublishReceived;
+
+        // Connect to the broker
+        ConnectToBroker();
     }
-    private void Update()
+
+    private void ConnectToBroker()
     {
-        if (!mqtt.client.IsConnected)
+        // Connect to the broker with a client ID, username, and password
+        client.Connect(Guid.NewGuid().ToString(), username, password);
+
+        // Subscribe to all specified topics
+        foreach (var topic in topics)
         {
-            mqtt.Conectar();
+            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+            print($"Conectado ao tópico: {topic}");
+        }
+    }
+
+    private void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+    {
+        // Message received
+        string topic = e.Topic;
+        string message = Encoding.UTF8.GetString(e.Message);
+
+        // Parse the received message and separate values for pistões
+        if (topic == "pistao" && message.Contains("PISTAO"))
+        {
+            string[] msgParts = message.Split(new[] { "%%", "%" }, StringSplitOptions.RemoveEmptyEntries);
+
+            // Extract values for pistões
+            if (msgParts.Length >= 3)
+            {
+                for (int i = 0; i < msgParts[2].Length; i += 3)
+                {
+                    char pistaoName = msgParts[2][i];
+                    string pistaoValueStr = msgParts[2].Substring(i + 1, 2);
+
+                    if (char.IsLetter(pistaoName) && int.TryParse(pistaoValueStr, out int pistaoValue))
+                    {
+                        // Update Serialized Fields for each pistão
+                        UpdatePistaoValues(pistaoName, pistaoValueStr);
+                        // Add the parsed value to the dictionary
+                        // Print the received message and separated values
+                        print($"Pistão {pistaoName} recebe {pistaoValueStr}");
+                    }
+                    else
+                    {
+                        print($"Error parsing Pistão {pistaoName} value.");
+                    }
+                }
+            }
         }
         else
         {
-            print("nao conectado");
+            // Print the received message for other topics
+            print($"Received message on topic '{topic}': {message}");
         }
+    }
 
-        if (mqtt.pistao.Count > 0)
+    private void UpdatePistaoValues(char pistaoName, string pistaoValue)
+    {
+        // Update Serialized Fields for each pistão
+        switch (pistaoName)
         {
-            mensagem = mqtt.pistao.Last();
-            print(mensagem);
-            if (lastPis != $"{mqtt.pistao.Count} - {mensagem}")
-            {
-                lastPis = $"{mqtt.pistao.Count} - {mensagem}";
-
-               // print(mensagem);
-
-
-                pistao1 = mensagem.pistao['A'];
-                pistao2 = mensagem.pistao['B'];
-                pistao3 = mensagem.pistao['C'];
-                pistao4 = mensagem.pistao['D'];
-
-            }
-
+            case 'A':
+                PistaoA = pistaoValue;
+                break;
+            case 'B':
+                PistaoB = pistaoValue;
+                break;
+            case 'C':
+                PistaoC = pistaoValue;
+                break;
+            case 'D':
+                PistaoD = pistaoValue;
+                break;
+            default:
+                print($"Unknown Pistão: {pistaoName}");
+                break;
         }
 
-        if (mqtt.posicao.Count > 0)
+
+        PistaoValueChanged?.Invoke(pistaoName, pistaoValue);
+
+    }
+
+    private void Update()
+    {
+        // Keep the application running
+    }
+
+    private void OnApplicationQuit()
+    {
+        // Disconnect from the broker when the application is closed
+        if (client != null && client.IsConnected)
         {
-            mensagem = mqtt.posicao.Last();
-            if (lastPos != $"{mqtt.posicao.Count} - {mensagem}")
-            {
-                lastPos = $"{mqtt.posicao.Count} - {mensagem}";
-                //print(lastPos);
-            }
+            client.Disconnect();
         }
-
-        Thread.Sleep(10);
     }
 }
 
+
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * /*
+
+
+
+
+
+      PISTÕES HORIZONTAIS:
+
+        01 - PISTAO PARA TRAS
+        11 - EM MOVIMENTO
+        10 - PISTAO EXTENDIDO
+
+        essa logica muda no pistao C
+
+        PISTAO C quando extendido ele muda pra 0
+
+      TOPICO GARRA
+
+        tem um topico chamado garra-POS
+        x y z e r da garra, sendo r a rotação
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Credenciais de conexão
+// string user = "DigitalTwin";
+// string pass = "Digital7w1n";
+// string server = "dd6e8d1cc8524360a537e7db4e5924f8.s2.eu.hivemq.cloud";
+// int port = 8883;
+
+Message mensagem;
+string lastPis = "";
+string lastPos = "";
+Mqtt mqtt;
+[SerializeField]
+int pistao1 = 0;
+[SerializeField]
+int pistao2 = 0;
+[SerializeField]
+int pistao3 = 0;
+[SerializeField]
+int pistao4 = 0;
+
+public int Pistao1 { get => pistao1; set => pistao1 = value; }
+public int Pistao2 { get => pistao2; set => pistao2 = value; }
+public int Pistao3 { get => pistao3; set => pistao3 = value; }
+public int Pistao4 { get => pistao4; set => pistao4 = value; }
+
+private void Start()
+{
+    mqtt = new Mqtt();
+
+}
+private void Update()
+{
+    if (!mqtt.client.IsConnected)
+    {
+        mqtt.Conectar();
+
+
+    }
+    else
+    {
+        //print("nao conectado");
+    }
+
+    print(mqtt.server);
+
+    /*
+    if (mqtt.pistao.Count > 0)
+    {
+        mensagem = mqtt.pistao.Last();
+        print(mensagem);
+        if (lastPis != $"{mqtt.pistao.Count} - {mensagem}")
+        {
+            lastPis = $"{mqtt.pistao.Count} - {mensagem}";
+
+           // print(mensagem);
+
+
+            pistao1 = mensagem.pistao['A'];
+            pistao2 = mensagem.pistao['B'];
+            pistao3 = mensagem.pistao['C'];
+            pistao4 = mensagem.pistao['D'];
+
+        }
+
+    }
+
+    if (mqtt.posicao.Count > 0)
+    {
+        mensagem = mqtt.posicao.Last();
+        if (lastPos != $"{mqtt.posicao.Count} - {mensagem}")
+        {
+            lastPos = $"{mqtt.posicao.Count} - {mensagem}";
+            //print(lastPos);
+        }
+    }
+    
+    Thread.Sleep(10);
+}
+/*
+CODIGO ANTIGO
 class Mqtt : MonoBehaviour
 {
     //DADOS DE CONEXÃO COM O SERVIDOR
@@ -126,7 +317,7 @@ class Mqtt : MonoBehaviour
     //######################################################################################################
 
     //MÉTODOS DA CLASSE
-    public Mqtt(string tpc = "topic", int prt = 8883, string usr = "DigitalTwin", string pss = "Digital7w1n", string svr = "be7ffc1c90054731998da6666ee7b112.s2.eu.hivemq.cloud")
+    public Mqtt(string tpc = "pistao", int prt = 8883, string usr = "DigitalTwin", string pss = "Digital7w1n", string svr = "dd6e8d1cc8524360a537e7db4e5924f8.s2.eu.hivemq.cloud")
     {
         // Adicionando as credenciais nas variáveis
         user = usr; pass = pss; server = svr; port = prt; topic = tpc;
@@ -163,13 +354,13 @@ class Mqtt : MonoBehaviour
     {
 
         // mensagem recebida    
-        string[] msg = Encoding.UTF8.GetString(e.Message).Replace("%%","%").Split('%');
+        string[] msg = Encoding.UTF8.GetString(e.Message).Replace("%%", "%").Split('%');
 
         if (msg.Length == 5)
         {
             if (msg[1] == "PISTAO")
             {
-                
+
                 pistao.Add(new Message(msg[2], msg[3], "PISTAO"));
                 msgToReadPis = true;
             }
@@ -179,5 +370,4 @@ class Mqtt : MonoBehaviour
                 msgToReadPos = true;
             }
         }
-    }
-}
+    }*/

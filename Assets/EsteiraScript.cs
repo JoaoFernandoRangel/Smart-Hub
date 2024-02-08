@@ -5,6 +5,8 @@ using UnityEngine;
 public class EsteiraScript : MonoBehaviour
 {
     [SerializeField]
+    bool PodeEmpurrando = true;
+    [SerializeField]
     float velocidade = 10;
     [SerializeField]
     Transform direction;
@@ -25,34 +27,45 @@ public class EsteiraScript : MonoBehaviour
     {
         if (empurrando)
         {
-
-            if (other.gameObject.CompareTag("Copo"))
+            if (PodeEmpurrando)
             {
-                other.TryGetComponent<Rigidbody>(out rb);
-                rb.MovePosition(rb.position + direction.forward * sliderEsteiraUI.velocidade * Time.deltaTime);
+                if (other.gameObject.CompareTag("Copo"))
+                {
+                    other.TryGetComponent<Rigidbody>(out rb);
+                    rb.MovePosition(rb.position + direction.forward * sliderEsteiraUI.velocidade * Time.deltaTime);
 
-                empurrando = true;
+                    empurrando = true;
+                }
             }
+    
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Copo"))
+        if (PodeEmpurrando)
         {
-            other.TryGetComponent<Rigidbody>(out rb);
-            rbList.Add(rb);
-            empurrando = true;
+            if (other.gameObject.CompareTag("Copo"))
+            {
+                other.TryGetComponent<Rigidbody>(out rb);
+                rbList.Add(rb);
+                empurrando = true;
+            }
         }
+   
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Copo") )
+        if (PodeEmpurrando)
         {
-            rb.MovePosition(rb.transform.position);
+            if (other.gameObject.CompareTag("Copo"))
+            {
+                rb.MovePosition(rb.transform.position);
 
-            rb = null;
-            empurrando = false;
+                rb = null;
+                empurrando = false;
+            }
         }
+    
     }
     private void OnCollisionStay(Collision otherThing)
     {

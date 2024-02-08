@@ -7,7 +7,8 @@ public enum PistaoState
 { ParadoInicio = 1, EmMovimento = 2, FechadoFinal = 3, Erro = 4 };
 public enum Drive
 { XDrive = 1, YDrive = 2, ZDrive = 3};
-
+public enum TipoPistao
+{ Horizontal = 1, Vertical = 2 };
 public class AddForcePiston : MonoBehaviour
 {
     //variaveis de forca
@@ -25,10 +26,15 @@ public class AddForcePiston : MonoBehaviour
     ArticulationDrive drive;
     [Header("Tracking")]
     [SerializeField]
+    char nomeDoPistao;
+    [SerializeField]
+    TipoPistao tipoPistao;
+    [SerializeField]
     int intPistaoState;
     [SerializeField]
     PistaoState pistaoState;
-
+    [SerializeField]
+    TrackingScript trackingScript;
 
     public PistaoState PistaoState { get => pistaoState; set => pistaoState = value; }
     public int IntPistaoState { get => intPistaoState; set => intPistaoState = value; }
@@ -46,6 +52,28 @@ public class AddForcePiston : MonoBehaviour
 
         CheckTheArticulationDrive();
 
+
+        trackingScript.PistaoValueChanged += TrackingScript_PistaoValueChanged;
+
+    }
+
+    private void TrackingScript_PistaoValueChanged(char arg1, string arg2)
+    {
+        if (tipoPistao== TipoPistao.Horizontal)
+        {
+            if (arg1 == nomeDoPistao)
+            {
+                if (arg2 == "01")
+                {
+                    pistaoState = PistaoState.ParadoInicio;
+                }
+                else if (arg2 == "10")
+                {
+                    pistaoState = PistaoState.FechadoFinal;
+                }
+            }
+        }
+      
     }
 
     private void CheckTheArticulationDrive()
