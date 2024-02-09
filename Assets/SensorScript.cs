@@ -26,7 +26,6 @@ public class SensorScript : MonoBehaviour
 
     private void OnPistaoValueChanged(char pistaoName, string pistaoValue)
     {
-        print("Valor do pistao mudou! " + trackingScript.PistaoC);
         
         if (trackingScript.PistaoC == "01" && !descendoModeloDoSensor)
         {

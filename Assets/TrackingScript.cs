@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading;
 using UnityEngine;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
@@ -12,13 +8,12 @@ public class TrackingScript : MonoBehaviour
 {
     private MqttClient client;
 
-    // Change these according to your MQTT broker details
     private string brokerAddress = "dd6e8d1cc8524360a537e7db4e5924f8.s2.eu.hivemq.cloud";
     private int brokerPort = 8883;
     private string username = "DigitalTwin";
     private string password = "Digital7w1n";
-    private string[] topics = { "pistao", "garra" };  // Add more topics as needed
-
+    private string[] topics = { "pistao", "garra" };
+    [Header("Valores dos pistões")]
     [SerializeField]
     private string pistaoA;
     [SerializeField]
@@ -27,88 +22,111 @@ public class TrackingScript : MonoBehaviour
     private string pistaoC;
     [SerializeField]
     private string pistaoD;
+    [Header("Valores da posição da Garra")]
+    [SerializeField]
+    private string garraX;
+    [SerializeField]
+    private string garraY;
+    [SerializeField]
+    private string garraZ;
+    [SerializeField]
+    private string rotacaoGarra;
 
     public string PistaoA { get => pistaoA; set => pistaoA = value; }
     public string PistaoB { get => pistaoB; set => pistaoB = value; }
     public string PistaoC { get => pistaoC; set => pistaoC = value; }
     public string PistaoD { get => pistaoD; set => pistaoD = value; }
+    public string GarraX { get => garraX; set => garraX = value; }
+    public string GarraY { get => garraY; set => garraY = value; }
+    public string GarraZ { get => garraZ; set => garraZ = value; }
+    public string RotacaoGarra { get => rotacaoGarra; set => rotacaoGarra = value; }
 
     public event Action<char, string> PistaoValueChanged;
-
-
+    public event Action<string, string, string, string> GarraValueChanged;
 
     private void Start()
     {
-        // Create a new instance of the MqttClient
         client = new MqttClient(brokerAddress, brokerPort, true, null, null, MqttSslProtocols.TLSv1_2);
-
-        // Register to the events
         client.MqttMsgPublishReceived += Client_MqttMsgPublishReceived;
-
-        // Connect to the broker
         ConnectToBroker();
     }
 
     private void ConnectToBroker()
     {
-        // Connect to the broker with a client ID, username, and password
         client.Connect(Guid.NewGuid().ToString(), username, password);
 
-        // Subscribe to all specified topics
         foreach (var topic in topics)
         {
             client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
-            print($"Conectado ao t�pico: {topic}");
+            print($"Conectado ao tópico: {topic}");
         }
     }
 
     private void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
     {
-        // Message received
         string topic = e.Topic;
         string message = Encoding.UTF8.GetString(e.Message);
 
-        // Parse the received message and separate values for pist�es
         if (topic == "pistao" && message.Contains("PISTAO"))
         {
-            string[] msgParts = message.Split(new[] { "%%", "%" }, StringSplitOptions.RemoveEmptyEntries);
-
-            // Extract values for pist�es
-            if (msgParts.Length >= 3)
-            {
-                for (int i = 0; i < msgParts[2].Length; i += 3)
-                {
-                    char pistaoName = msgParts[2][i];
-                    string pistaoValueStr = msgParts[2].Substring(i + 1, 2);
-
-                    if (char.IsLetter(pistaoName) && int.TryParse(pistaoValueStr, out int pistaoValue))
-                    {
-                        // Update Serialized Fields for each pist�o
-                        UpdatePistaoValues(pistaoName, pistaoValueStr);
-                        // Add the parsed value to the dictionary
-                        // Print the received message and separated values
-                        
-                        //print($"Pist�o {pistaoName} recebe {pistaoValueStr}");
-                    }
-                    else
-                    {
-                        //print($"Error parsing Pist�o {pistaoName} value.");
-                    }
-                }
-            }
+            ProcessPistaoMessage(message);
+        }
+        else if (topic == "garra" && message.Contains("%%"))
+        {
+            ProcessGarraMessage(message);
         }
         else
         {
             // Print the received message for other topics
-            
-            
-            //print($"Received message on topic '{topic}': {message}");
+            // print($"Received message on topic '{topic}': {message}");
+        }
+    }
+
+    private void ProcessPistaoMessage(string message)
+    {
+        string[] msgParts = message.Split(new[] { "%%", "%" }, StringSplitOptions.RemoveEmptyEntries);
+
+        if (msgParts.Length >= 3)
+        {
+            for (int i = 0; i < msgParts[2].Length; i += 3)
+            {
+                char pistaoName = msgParts[2][i];
+                string pistaoValueStr = msgParts[2].Substring(i + 1, 2);
+
+                if (char.IsLetter(pistaoName) && int.TryParse(pistaoValueStr, out int pistaoValue))
+                {
+                    UpdatePistaoValues(pistaoName, pistaoValueStr);
+                }
+                else
+                {
+                    // print($"Error parsing Pistão {pistaoName} value.");
+                }
+            }
+        }
+    }
+
+    private void ProcessGarraMessage(string message)
+    {
+        string[] garraValues = message.Split(new[] { "%%" }, StringSplitOptions.RemoveEmptyEntries);
+
+        if (garraValues.Length >= 4)
+        {
+            GarraX = garraValues[2];
+            GarraY = garraValues[3];
+            GarraZ = garraValues[1];
+
+            if (float.TryParse(garraValues[4], out float aberturaValue))
+            {
+                RotacaoGarra = garraValues[4];
+            }
+
+            // Invoke event to notify listeners about the updated garra values
+            GarraValueChanged?.Invoke(GarraX, GarraY, GarraZ, RotacaoGarra);
         }
     }
 
     private void UpdatePistaoValues(char pistaoName, string pistaoValue)
     {
-        // Update Serialized Fields for each pist�o
         switch (pistaoName)
         {
             case 'A':
@@ -124,13 +142,11 @@ public class TrackingScript : MonoBehaviour
                 PistaoD = pistaoValue;
                 break;
             default:
-                print($"Unknown Pist�o: {pistaoName}");
+                print($"Unknown Pistão: {pistaoName}");
                 break;
         }
 
-
         PistaoValueChanged?.Invoke(pistaoName, pistaoValue);
-
     }
 
     private void Update()
@@ -140,7 +156,6 @@ public class TrackingScript : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        // Disconnect from the broker when the application is closed
         if (client != null && client.IsConnected)
         {
             client.Disconnect();
