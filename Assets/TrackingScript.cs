@@ -12,7 +12,7 @@ public class TrackingScript : MonoBehaviour
     private int brokerPort = 8883;
     private string username = "DigitalTwin";
     private string password = "Digital7w1n";
-    private string[] topics = { "pistao", "garra" };
+    private string[] topics = { "pistao", "xyzr" };
     [Header("Valores dos pistões")]
     [SerializeField]
     private string pistaoA;
@@ -31,7 +31,8 @@ public class TrackingScript : MonoBehaviour
     private string garraZ;
     [SerializeField]
     private string rotacaoGarra;
-
+    [SerializeField]
+    private string aberturaGarra;
     public string PistaoA { get => pistaoA; set => pistaoA = value; }
     public string PistaoB { get => pistaoB; set => pistaoB = value; }
     public string PistaoC { get => pistaoC; set => pistaoC = value; }
@@ -40,6 +41,7 @@ public class TrackingScript : MonoBehaviour
     public string GarraY { get => garraY; set => garraY = value; }
     public string GarraZ { get => garraZ; set => garraZ = value; }
     public string RotacaoGarra { get => rotacaoGarra; set => rotacaoGarra = value; }
+    public string AberturaGarra { get => aberturaGarra; set => aberturaGarra = value; }
 
     public event Action<char, string> PistaoValueChanged;
     public event Action<string, string, string, string> GarraValueChanged;
@@ -71,7 +73,7 @@ public class TrackingScript : MonoBehaviour
         {
             ProcessPistaoMessage(message);
         }
-        else if (topic == "garra" && message.Contains("%%"))
+        else if (topic == "xyzr" && message.Contains("%%"))
         {
             ProcessGarraMessage(message);
         }
@@ -114,11 +116,23 @@ public class TrackingScript : MonoBehaviour
             GarraX = garraValues[2];
             GarraY = garraValues[3];
             GarraZ = garraValues[1];
-
+            /*
+             *
+             *
+               ROBO      UNITY
+               z     ->     Y
+               y     ->     X
+               x     ->     Z
+             *
+             *
+             */
             if (float.TryParse(garraValues[4], out float aberturaValue))
             {
                 RotacaoGarra = garraValues[4];
             }
+
+            AberturaGarra = garraValues[5];
+
 
             // Invoke event to notify listeners about the updated garra values
             GarraValueChanged?.Invoke(GarraX, GarraY, GarraZ, RotacaoGarra);

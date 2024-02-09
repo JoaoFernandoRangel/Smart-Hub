@@ -19,6 +19,11 @@ public class CopyPosition : MonoBehaviour
     [SerializeField]
     float zValueFloatDividido;
 
+    [Header("Configurações de Interpolação")]
+    [SerializeField]
+    float interpSpeed = 2f; // Ajuste conforme necessário
+    Vector3 targetPosition;
+
     private void Start()
     {
         trackingScript.GarraValueChanged += TrackingScript_GarraValueChanged;
@@ -38,14 +43,16 @@ public class CopyPosition : MonoBehaviour
 
     private void IrParaPos()
     {
-        print("IrParaPos");
-
-        objetoASerSeguido.transform.localPosition = new Vector3(xValueFloatDividido, yValueFloatDividido, zValueFloatDividido);
+        targetPosition = new Vector3(xValueFloatDividido, yValueFloatDividido, zValueFloatDividido);
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = objetoASerSeguido.transform.position;
+
+
+        objetoASerSeguido.transform.localPosition = Vector3.Lerp(objetoASerSeguido.transform.localPosition, targetPosition, Time.deltaTime * interpSpeed);
+
     }
 }
