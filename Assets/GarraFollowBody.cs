@@ -17,6 +17,8 @@ public class GarraFollowBody : MonoBehaviour
     [SerializeField]
     float rotacaoTransformadaEscopo;
     [SerializeField]
+    float valorASomado =270;
+    [SerializeField]
     Vector3 offsetRotation;
     public float velocidadeDoLerp = 2;
 
@@ -42,40 +44,35 @@ public class GarraFollowBody : MonoBehaviour
             Quaternion novaRotacao = objetoASeguir.rotation;
 
             // Substitui a rotação em torno do eixo Y pelo valor de rotacaoTransformadaEscopo
-            novaRotacao *= Quaternion.Euler(0 + offsetRotation.x, rotacaoTransformadaEscopo, 0 + offsetRotation.z);
+            novaRotacao *= Quaternion.Euler(0 + offsetRotation.x, rotacaoTransformadaEscopo + offsetRotation.y, 0 + offsetRotation.z);
 
             // Aplica a nova rotação ao objetoARodar
             objetoARodar.transform.rotation = novaRotacao;
         }
     }
 
-
     private void TrackingScript_GarraValueChanged(string arg1, string arg2, string arg3, string arg4)
     {
         float.TryParse(arg4, out float rotacaoTransformada);
 
-
+        // Converta a rotação para se alinhar corretamente com a orientação desejada
+        float rotacaoConvertida = 0f;
+        /*
         if (rotacaoTransformada > 0)
         {
-            rotacaoTransformada = rotacaoTransformada * -1;
-            print(rotacaoTransformada);
-        }
-        else if (rotacaoTransformada == 0)
-        {
-            rotacaoTransformada = 180;
-            print(rotacaoTransformada);
+            rotacaoConvertida = -rotacaoTransformada;
         }
         else if (rotacaoTransformada < 0)
         {
-            rotacaoTransformada -= 90;
-            print(rotacaoTransformada);
-        }
-
-
-
-        rotacaoTransformadaEscopo = rotacaoTransformada;
-
+            rotacaoConvertida = (rotacaoTransformada * -1)  + valorASomado;
+            print((rotacaoTransformada * -1) + " + " + valorASomado + " = " + rotacaoConvertida);
+        
+        }*/
+        print(rotacaoConvertida);
+        // Ajuste a rotação para o objeto seguir corretamente
+        rotacaoTransformadaEscopo = rotacaoTransformada * -1;
     }
+
 
 
 
