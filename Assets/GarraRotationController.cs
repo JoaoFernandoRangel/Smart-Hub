@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GarraRotationController : MonoBehaviour
 {
+    /*
     [SerializeField]
     TrackingScript trackingScript;
     [SerializeField]
@@ -38,7 +39,7 @@ public class GarraRotationController : MonoBehaviour
         //DesativarIK();
         //MainThreadDispatcher.Instance.Enqueue(() => GirarGarra(toma));
 
-    }
+    }*/
     /*
     private void GirarGarra(float toma)
     {

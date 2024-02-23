@@ -16,7 +16,8 @@ public class GarraFollowBody : MonoBehaviour
     TrackingScript trackingScript;
     [SerializeField]
     float rotacaoTransformadaEscopo;
-
+    [SerializeField]
+    Vector3 offsetRotation;
     public float velocidadeDoLerp = 2;
 
     private void Start()
@@ -41,7 +42,7 @@ public class GarraFollowBody : MonoBehaviour
             Quaternion novaRotacao = objetoASeguir.rotation;
 
             // Substitui a rotação em torno do eixo Y pelo valor de rotacaoTransformadaEscopo
-            novaRotacao *= Quaternion.Euler(0, rotacaoTransformadaEscopo, 0);
+            novaRotacao *= Quaternion.Euler(0 + offsetRotation.x, rotacaoTransformadaEscopo, 0 + offsetRotation.z);
 
             // Aplica a nova rotação ao objetoARodar
             objetoARodar.transform.rotation = novaRotacao;
@@ -51,10 +52,12 @@ public class GarraFollowBody : MonoBehaviour
 
     private void TrackingScript_GarraValueChanged(string arg1, string arg2, string arg3, string arg4)
     {
-        float.TryParse(arg4, out float rotacaoTransformada);/*
+        float.TryParse(arg4, out float rotacaoTransformada);
+
+
         if (rotacaoTransformada > 0)
         {
-            rotacaoTransformada += 90;
+            rotacaoTransformada = rotacaoTransformada * -1;
             print(rotacaoTransformada);
         }
         else if (rotacaoTransformada == 0)
@@ -66,7 +69,10 @@ public class GarraFollowBody : MonoBehaviour
         {
             rotacaoTransformada -= 90;
             print(rotacaoTransformada);
-        }*/
+        }
+
+
+
         rotacaoTransformadaEscopo = rotacaoTransformada;
 
     }
