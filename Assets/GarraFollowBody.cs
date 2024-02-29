@@ -13,13 +13,13 @@ public class GarraFollowBody : MonoBehaviour
     private Vector3 offset; // Deslocamento (offset) a ser aplicado à posição
 
     [SerializeField]
+    private Vector3 offsetRotacao; // Deslocamento (offset) a ser aplicado à posição
+
+    [SerializeField]
     TrackingScript trackingScript;
     [SerializeField]
     float rotacaoTransformadaEscopo;
-    [SerializeField]
-    float valorASomado =270;
-    [SerializeField]
-    Vector3 offsetRotation;
+
     public float velocidadeDoLerp = 2;
 
     private void Start()
@@ -28,51 +28,43 @@ public class GarraFollowBody : MonoBehaviour
     }
     private void Update()
     {
-        // Verifica se a referência do objeto a seguir está configurada
         if (objetoASeguir != null && objetoARodar != null)
         {
-            // Obtém a posição atual do objeto a seguir com o offset
             Vector3 posicaoAlvo = objetoASeguir.position + offset;
-
-            // Move este objeto em direção à posição alvo suavemente
             transform.position = posicaoAlvo;
-
-            // Copia a rotação do objeto de referência
             transform.rotation = objetoASeguir.rotation;
 
-            // Copia a rotação do objeto pai
             Quaternion novaRotacao = objetoASeguir.rotation;
+            novaRotacao *= Quaternion.Euler(0 + offsetRotacao.x, rotacaoTransformadaEscopo + offsetRotacao.y, 0 + offsetRotacao.z);
 
-            // Substitui a rotação em torno do eixo Y pelo valor de rotacaoTransformadaEscopo
-            novaRotacao *= Quaternion.Euler(0 + offsetRotation.x, rotacaoTransformadaEscopo + offsetRotation.y, 0 + offsetRotation.z);
-
-            // Aplica a nova rotação ao objetoARodar
-            objetoARodar.transform.rotation = novaRotacao;
+            // Interpola suavemente entre a rotação atual e a nova rotação
+            objetoARodar.transform.rotation = Quaternion.Slerp(objetoARodar.transform.rotation, novaRotacao, Time.deltaTime * velocidadeDoLerp);
         }
     }
+
 
     private void TrackingScript_GarraValueChanged(string arg1, string arg2, string arg3, string arg4)
     {
-        float.TryParse(arg4, out float rotacaoTransformada);
-
-        // Converta a rotação para se alinhar corretamente com a orientação desejada
-        float rotacaoConvertida = 0f;
-        /*
+        float.TryParse(arg4, out float rotacaoTransformada);/*
         if (rotacaoTransformada > 0)
         {
-            rotacaoConvertida = -rotacaoTransformada;
+            rotacaoTransformada += 90;
+            print(rotacaoTransformada);
+        }
+        else if (rotacaoTransformada == 0)
+        {
+            rotacaoTransformada = 180;
+            print(rotacaoTransformada);
         }
         else if (rotacaoTransformada < 0)
         {
-            rotacaoConvertida = (rotacaoTransformada * -1)  + valorASomado;
-            print((rotacaoTransformada * -1) + " + " + valorASomado + " = " + rotacaoConvertida);
-        
+            rotacaoTransformada -= 90;
+            print(rotacaoTransformada);
         }*/
-        print(rotacaoConvertida);
-        // Ajuste a rotação para o objeto seguir corretamente
-        rotacaoTransformadaEscopo = rotacaoTransformada * -1;
-    }
+        rotacaoTransformadaEscopo = rotacaoTransformada;
 
+
+    }
 
 
 

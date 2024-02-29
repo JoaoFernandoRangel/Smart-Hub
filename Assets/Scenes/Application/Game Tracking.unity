@@ -3665,11 +3665,10 @@ MonoBehaviour:
   objetoARodar: {fileID: 618143795}
   objetoASeguir: {fileID: 575200077}
   offset: {x: 0, y: 0, z: 0}
+  offsetRotacao: {x: -8.58, y: 0, z: 0}
   trackingScript: {fileID: 1869664760}
   rotacaoTransformadaEscopo: 180
-  valorASomado: 270
-  offsetRotation: {x: -8.91, y: -77.5, z: 0}
-  velocidadeDoLerp: 2
+  velocidadeDoLerp: 6
 --- !u!1 &419927893
 GameObject:
   m_ObjectHideFlags: 0
@@ -6885,7 +6884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886433501}
   m_LocalRotation: {x: -0, y: -0.00000019371507, z: -0, w: 1}
-  m_LocalPosition: {x: -0.467, y: 0.179, z: -0.121}
+  m_LocalPosition: {x: -0.4558, y: 0.179, z: -0.1358}
   m_LocalScale: {x: 1.3841, y: 1.3841, z: 1.3841}
   m_Children:
   - {fileID: 1176490464}
@@ -11195,23 +11194,6 @@ Transform:
   m_Father: {fileID: 1452806171}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1529523285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 19b1127acc8dc3e47a118a302a4f28e7,
-    type: 3}
-  m_PrefabInstance: {fileID: 6169623759332366102}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1899281015}
-  m_Layer: 0
-  m_Name: cilinder
-  m_TagString: Copo
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1531645219
 GameObject:
   m_ObjectHideFlags: 0
@@ -13579,23 +13561,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888335611}
   m_Mesh: {fileID: 5524344350822975071, guid: afad3fa7d313c5d4db437d5cacaf5e90, type: 3}
---- !u!4 &1899281015
+--- !u!4 &1899281015 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 19b1127acc8dc3e47a118a302a4f28e7,
     type: 3}
   m_PrefabInstance: {fileID: 6169623759332366102}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529523285}
-  m_LocalRotation: {x: -0.0000003266381, y: 0.70710677, z: 0.7071069, w: 0.00000032663803}
-  m_LocalPosition: {x: 0.53445804, y: 0.03842205, z: -0.10197608}
-  m_LocalScale: {x: 0.013584251, y: 0.013584248, z: 0.019017946}
-  m_Children:
-  - {fileID: 4900674551752875609}
-  - {fileID: 316405064}
-  m_Father: {fileID: 2045766253}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1908730116
 GameObject:
   m_ObjectHideFlags: 0
