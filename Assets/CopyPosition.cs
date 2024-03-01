@@ -18,7 +18,8 @@ public class CopyPosition : MonoBehaviour
     float yValueFloatDividido;
     [SerializeField]
     float zValueFloatDividido;
-
+    [SerializeField]
+    float valueFloatParaDividir = 100000;
     [Header("Configurações de Interpolação")]
     [SerializeField]
     float interpSpeed = 2f; // Ajuste conforme necessário
@@ -35,9 +36,9 @@ public class CopyPosition : MonoBehaviour
         float.TryParse(yValue, out float yValueFloat);
         float.TryParse(zValue, out float zValueFloat);
 
-        xValueFloatDividido = (xValueFloat / 1000) * -1;
-        yValueFloatDividido = yValueFloat / 1000;
-        zValueFloatDividido = zValueFloat / 1000;
+        xValueFloatDividido = (xValueFloat / valueFloatParaDividir) * -1;
+        yValueFloatDividido = yValueFloat / valueFloatParaDividir;
+        zValueFloatDividido = zValueFloat / valueFloatParaDividir;
         MainThreadDispatcher.Instance.Enqueue(() => IrParaPos());
     }
 
