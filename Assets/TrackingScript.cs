@@ -164,17 +164,16 @@ public class TrackingScript : MonoBehaviour
             {
                 // Conversão bem-sucedida para long
                 int epochTimeAInt = (int)epochTimeALong; // Converte de long para int, se necessário
-                Debug.Log($"epochTimeA convertido para long: {epochTimeALong}");
-
-                print(epochTimeALong + " - " + Epoch.epochTime() * 1000 + " = " + (epochTimeALong - (Epoch.epochTime() * 1000)));
-
+                print("mensagem");
+                //print(epochTimeALong + " - " + Epoch.epochTime() * 1000 + " = " + (epochTimeALong - (Epoch.epochTime() * 1000)));
+                epochTimeUnity = (Epoch.epochTime() * 1000).ToString();
+                epochTimeDiferenca = (epochTimeALong - (Epoch.epochTime() * 1000)).ToString();
 
 
             }
             else
             {
                 // Se a conversão falhar, exiba uma mensagem de erro
-                Debug.LogError("epochTimeA não é um valor numérico válido.");
             }
             MainThreadDispatcher.Instance.Enqueue(() => atualizarGUI.Atualizar()); 
 
