@@ -3612,6 +3612,7 @@ GameObject:
   - component: {fileID: 351913140}
   - component: {fileID: 351913139}
   - component: {fileID: 351913138}
+  - component: {fileID: 351913141}
   m_Layer: 5
   m_Name: Canvas GUI
   m_TagString: Untagged
@@ -3708,6 +3709,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &351913141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351913136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e8a4b02ce03904ba7620be1aadf8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TMP_TextepochTimeA: {fileID: 1667534314}
+  TMP_TextepochTimeB: {fileID: 250009050}
+  TMP_TextepochTimeUnity: {fileID: 1959686355}
+  TMP_TextepochTimeDiference: {fileID: 1601222476}
+  trackingScript: {fileID: 1869664760}
 --- !u!1 &391389104
 GameObject:
   m_ObjectHideFlags: 0
@@ -8181,8 +8199,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21.75, y: -15.31}
-  m_SizeDelta: {x: 161.52, y: 69.38}
+  m_AnchoredPosition: {x: 29.8, y: -15.31}
+  m_SizeDelta: {x: 177.62, y: 69.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1043823098
 MonoBehaviour:
@@ -11855,7 +11873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Diferen\xE7a:"
+  m_text: "Diferen\xE7a Unity x Servidor:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 37f04b86f4414de42b5d81865ce64008, type: 2}
   m_sharedMaterial: {fileID: 6958840000000600014, guid: 37f04b86f4414de42b5d81865ce64008,
@@ -12655,7 +12673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90, y: -53}
+  m_AnchoredPosition: {x: 152.2, y: -53}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1601222476
@@ -14272,10 +14290,8 @@ MonoBehaviour:
   epochTimeA: 
   epochTimeB: 
   epochTimeUnity: 
-  TMP_TextepochTimeA: {fileID: 1667534314}
-  TMP_TextepochTimeB: {fileID: 250009050}
-  TMP_TextepochTimeUnity: {fileID: 1959686355}
-  TMP_TextepochTimeDiference: {fileID: 1601222476}
+  epochTimeDiferenca: 
+  atualizarGUI: {fileID: 351913141}
 --- !u!4 &1869664761
 Transform:
   m_ObjectHideFlags: 0

@@ -36,20 +36,16 @@ public class TrackingScript : MonoBehaviour
     private string aberturaGarra;
     [Header("Epoch Time")]
     [SerializeField]
-    private string epochTimeA;
+    public string epochTimeA;
     [SerializeField]
-    private string epochTimeB;
+    public string epochTimeB;
     [SerializeField]
-    private string epochTimeUnity;
+    public string epochTimeUnity;
+    [SerializeField]
+    public string epochTimeDiferenca;
     [Header("UI")]
     [SerializeField]
-    private TMP_Text TMP_TextepochTimeA;
-    [SerializeField]
-    private TMP_Text TMP_TextepochTimeB;
-    [SerializeField]
-    private TMP_Text TMP_TextepochTimeUnity;
-    [SerializeField]
-    private TMP_Text TMP_TextepochTimeDiference;
+    public AtualizarGUI atualizarGUI;
     public string PistaoA { get => pistaoA; set => pistaoA = value; }
     public string PistaoB { get => pistaoB; set => pistaoB = value; }
     public string PistaoC { get => pistaoC; set => pistaoC = value; }
@@ -139,7 +135,6 @@ public class TrackingScript : MonoBehaviour
 
             epochTimeA = garraValues[0];
             epochTimeB = garraValues[7];
-            epochTimeUnity = (Epoch.epochTime() * 1000).ToString();
 
             // Atualize os valores da garra conforme a funcionalidade anterior
             GarraX = garraValues[3];
@@ -161,10 +156,29 @@ public class TrackingScript : MonoBehaviour
              */
 
             RotacaoGarra = garraValues[5];
-            AberturaGarra = garraValues[6];
+            AberturaGarra = garraValues[6];/*
 
-            AtualizarGUI();
+            */
+            long epochTimeALong;
+            if (long.TryParse(epochTimeA, out epochTimeALong))
+            {
+                // Conversão bem-sucedida para long
+                int epochTimeAInt = (int)epochTimeALong; // Converte de long para int, se necessário
+                Debug.Log($"epochTimeA convertido para long: {epochTimeALong}");
 
+                print(epochTimeALong + " - " + Epoch.epochTime() * 1000 + " = " + (epochTimeALong - (Epoch.epochTime() * 1000)));
+
+
+
+            }
+            else
+            {
+                // Se a conversão falhar, exiba uma mensagem de erro
+                Debug.LogError("epochTimeA não é um valor numérico válido.");
+            }
+            MainThreadDispatcher.Instance.Enqueue(() => atualizarGUI.Atualizar()); 
+
+            
 
 
             // Invoke event to notify listeners about the updated garra values
@@ -172,13 +186,7 @@ public class TrackingScript : MonoBehaviour
         }
     }
 
-    private void AtualizarGUI()
-    {
-        TMP_TextepochTimeA.text = epochTimeA;
-        TMP_TextepochTimeB.text = epochTimeB;
-        TMP_TextepochTimeUnity.text = epochTimeUnity;
-        TMP_TextepochTimeDiference.text = epochTimeA;
-    }
+
 
     private void UpdatePistaoValues(char pistaoName, string pistaoValue)
     {
@@ -204,10 +212,7 @@ public class TrackingScript : MonoBehaviour
         PistaoValueChanged?.Invoke(pistaoName, pistaoValue);
     }
 
-    private void Update()
-    {
-        // Keep the application running
-    }
+
 
     private void OnApplicationQuit()
     {
