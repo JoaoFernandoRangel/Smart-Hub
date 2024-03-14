@@ -164,7 +164,6 @@ public class TrackingScript : MonoBehaviour
             {
                 // Conversão bem-sucedida para long
                 int epochTimeAInt = (int)epochTimeALong; // Converte de long para int, se necessário
-                print("mensagem");
                 //print(epochTimeALong + " - " + Epoch.epochTime() * 1000 + " = " + (epochTimeALong - (Epoch.epochTime() * 1000)));
                 epochTimeUnity = (Epoch.epochTime() * 1000).ToString();
                 epochTimeDiferenca = (epochTimeALong - (Epoch.epochTime() * 1000)).ToString();
