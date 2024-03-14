@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
@@ -33,6 +34,22 @@ public class TrackingScript : MonoBehaviour
     private string rotacaoGarra;
     [SerializeField]
     private string aberturaGarra;
+    [Header("Epoch Time")]
+    [SerializeField]
+    private string epochTimeA;
+    [SerializeField]
+    private string epochTimeB;
+    [SerializeField]
+    private string epochTimeUnity;
+    [Header("UI")]
+    [SerializeField]
+    private TMP_Text TMP_TextepochTimeA;
+    [SerializeField]
+    private TMP_Text TMP_TextepochTimeB;
+    [SerializeField]
+    private TMP_Text TMP_TextepochTimeUnity;
+    [SerializeField]
+    private TMP_Text TMP_TextepochTimeDiference;
     public string PistaoA { get => pistaoA; set => pistaoA = value; }
     public string PistaoB { get => pistaoB; set => pistaoB = value; }
     public string PistaoC { get => pistaoC; set => pistaoC = value; }
@@ -69,6 +86,10 @@ public class TrackingScript : MonoBehaviour
         string topic = e.Topic;
         string message = Encoding.UTF8.GetString(e.Message);
 
+     
+
+
+
         if (topic == "pistao" && message.Contains("PISTAO"))
         {
             ProcessPistaoMessage(message);
@@ -81,6 +102,7 @@ public class TrackingScript : MonoBehaviour
         {
             // Print the received message for other topics
             // print($"Received message on topic '{topic}': {message}");
+
         }
     }
 
@@ -111,11 +133,22 @@ public class TrackingScript : MonoBehaviour
     {
         string[] garraValues = message.Split(new[] { "%%" }, StringSplitOptions.RemoveEmptyEntries);
 
-        if (garraValues.Length >= 4)
+        if (garraValues.Length >= 7)
         {
+
+
+            epochTimeA = garraValues[0];
+            epochTimeB = garraValues[7];
+            epochTimeUnity = (Epoch.epochTime() * 1000).ToString();
+
+            // Atualize os valores da garra conforme a funcionalidade anterior
+            GarraX = garraValues[3];
+            GarraY = garraValues[4];
+            GarraZ = garraValues[2];
+            /*
             GarraX = garraValues[2];
             GarraY = garraValues[3];
-            GarraZ = garraValues[1];
+            GarraZ = garraValues[1];*/
             /*
              *
              *
@@ -126,17 +159,25 @@ public class TrackingScript : MonoBehaviour
              *
              *
              */
-            if (float.TryParse(garraValues[4], out float aberturaValue))
-            {
-                RotacaoGarra = garraValues[4];
-            }
 
-            AberturaGarra = garraValues[5];
+            RotacaoGarra = garraValues[5];
+            AberturaGarra = garraValues[6];
+
+            AtualizarGUI();
+
 
 
             // Invoke event to notify listeners about the updated garra values
             GarraValueChanged?.Invoke(GarraX, GarraY, GarraZ, RotacaoGarra);
         }
+    }
+
+    private void AtualizarGUI()
+    {
+        TMP_TextepochTimeA.text = epochTimeA;
+        TMP_TextepochTimeB.text = epochTimeB;
+        TMP_TextepochTimeUnity.text = epochTimeUnity;
+        TMP_TextepochTimeDiference.text = epochTimeA;
     }
 
     private void UpdatePistaoValues(char pistaoName, string pistaoValue)
@@ -174,6 +215,63 @@ public class TrackingScript : MonoBehaviour
         {
             client.Disconnect();
         }
+    }
+}
+
+public class Epoch
+{
+    /// <summary>
+    /// Unix High Resolution Epoch Time (Milliseconds since UTC 1/1/1970 00:00:00)
+    /// </summary>
+    /// <returns>double</returns>
+    public static double EpochTimeHiRes()
+    {
+        return (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+    }
+
+    /// <summary>
+    /// Unix High Resolution Epoch Time (Milliseconds since UTC 1/1/1970 00:00:00)
+    /// </summary>
+    /// <returns>decimal</returns>
+    public static decimal EpochTimeHiResAsDecimal()
+    {
+        return Convert.ToDecimal((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds);
+    }
+
+    /// <summary>
+    /// Unix High Resolution Epoch Time (Milliseconds since UTC 1/1/1970 00:00:00)
+    /// </summary>
+    /// <returns>string</returns>
+    public static string EpochTimeHiResAsString()
+    {
+        return (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString().Replace(".", "");
+    }
+
+    /// <summary>
+    /// Unix Epoch Time (Seconds since UTC 1/1/1970 00:00:00)
+    /// </summary>
+    /// <returns>double</returns>
+    public static double epochTime()
+    {
+        return (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+    }
+
+    /// <summary>
+    /// Unix Epoch Days (Days since UTC 1/1/1970 00:00:00)
+    /// </summary>
+    /// <returns>int</returns>
+    public static int epochDays()
+    {
+        return (int)(((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds) / 86400);
+    }
+
+    /// <summary>
+    /// Unix Epoch Hours (Hours since UTC 1/1/1970 00:00:00)
+    /// </summary>
+    /// <returns>int</returns>
+    public static int epochHours()
+    {
+        return (int)(((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds) / 3600);
     }
 }
 
