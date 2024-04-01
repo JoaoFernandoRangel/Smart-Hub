@@ -13,7 +13,7 @@ public class TrackingScript : MonoBehaviour
     private int brokerPort = 8883;
     private string username = "DigitalTwin";
     private string password = "Digital7w1n";
-    private string[] topics = { "pistao", "xyzr" };
+    private string[] topics = { "pistao", "xyzr" ,"garra"};
     [Header("Valores dos pistões")]
     [SerializeField]
     private string pistaoA;
@@ -43,6 +43,12 @@ public class TrackingScript : MonoBehaviour
     public long epochTimeUnity;
     [SerializeField]
     public string epochTimeDiferenca;
+    [Header("Valores do Potenciômetro da Garra")]
+    [SerializeField]
+    private string valorPotenciometroGarra;
+
+
+
     [Header("UI")]
     [SerializeField]
     public AtualizarGUI atualizarGUI;
@@ -85,7 +91,6 @@ public class TrackingScript : MonoBehaviour
         string topic = e.Topic;
         string message = Encoding.UTF8.GetString(e.Message);
 
-     
 
 
 
@@ -96,7 +101,12 @@ public class TrackingScript : MonoBehaviour
         else if (topic == "xyzr" && message.Contains("%%"))
         {
             ProcessGarraMessage(message);
+        }        
+        else if (topic == "garra" && message.Contains("%%"))
+        {
+            ProcessPotenciometroMessage(message);
         }
+        
         else
         {
             // Print the received message for other topics
@@ -107,14 +117,15 @@ public class TrackingScript : MonoBehaviour
 
     private void ProcessPistaoMessage(string message)
     {
-        string[] msgParts = message.Split(new[] { "%%", "%" }, StringSplitOptions.RemoveEmptyEntries);
-
-        if (msgParts.Length >= 3)
+        string[] msgParts = message.Split(new[] { "%%", "%%" }, StringSplitOptions.RemoveEmptyEntries);
+        if (msgParts.Length >= 4)
         {
-            for (int i = 0; i < msgParts[2].Length; i += 3)
+            string pistaoValues = msgParts[3];
+
+            for (int i = 0; i < pistaoValues.Length; i += 3)
             {
-                char pistaoName = msgParts[2][i];
-                string pistaoValueStr = msgParts[2].Substring(i + 1, 2);
+                char pistaoName = pistaoValues[i];
+                string pistaoValueStr = pistaoValues.Substring(i + 1, 2);
 
                 if (char.IsLetter(pistaoName) && int.TryParse(pistaoValueStr, out int pistaoValue))
                 {
@@ -128,10 +139,11 @@ public class TrackingScript : MonoBehaviour
         }
     }
 
+
     private void ProcessGarraMessage(string message)
     {
         string[] garraValues = message.Split(new[] { "%%" }, StringSplitOptions.RemoveEmptyEntries);
-
+        print(message);
         if (garraValues.Length >= 7)
         {
 
@@ -185,6 +197,21 @@ public class TrackingScript : MonoBehaviour
 
             // Invoke event to notify listeners about the updated garra values
             GarraValueChanged?.Invoke(GarraX, GarraY, GarraZ, RotacaoGarra);
+        }
+    }
+    private void ProcessPotenciometroMessage(string message)
+    {
+        string[] garraValues = message.Split(new[] { "%%" }, StringSplitOptions.RemoveEmptyEntries);
+
+        if (garraValues.Length >= 4)
+        {
+            // Obtém o último valor da mensagem
+            string ultimoValor = garraValues[3];
+
+            // Armazene o último valor como valor do potenciômetro da garra
+            valorPotenciometroGarra = ultimoValor;
+
+            // Restante do seu código...
         }
     }
 

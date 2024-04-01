@@ -8,7 +8,7 @@ public class SensorScript : MonoBehaviour
     private bool isModeloDoSensorEmMovimento = false;
     private bool descendoModeloDoSensor = false;
     private bool subindoModeloDoSensor = false;
-    private float velocidadeDescida = 1.0f;
+    private float velocidadeDescida = 2.0f;
     [SerializeField]
     private float alturaDescida = -0.008f;
     private Vector3 posicaoAntiga;
