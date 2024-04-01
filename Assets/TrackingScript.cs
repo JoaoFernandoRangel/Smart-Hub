@@ -40,12 +40,15 @@ public class TrackingScript : MonoBehaviour
     [SerializeField]
     public string epochTimeB;
     [SerializeField]
-    public string epochTimeUnity;
+    public long epochTimeUnity;
     [SerializeField]
     public string epochTimeDiferenca;
     [Header("UI")]
     [SerializeField]
     public AtualizarGUI atualizarGUI;
+    [Header("NTP")]
+    [SerializeField]
+    public NTPCLient ntpcCLient;
     public string PistaoA { get => pistaoA; set => pistaoA = value; }
     public string PistaoB { get => pistaoB; set => pistaoB = value; }
     public string PistaoC { get => pistaoC; set => pistaoC = value; }
@@ -165,9 +168,10 @@ public class TrackingScript : MonoBehaviour
                 // Conversão bem-sucedida para long
                 int epochTimeAInt = (int)epochTimeALong; // Converte de long para int, se necessário
                 //print(epochTimeALong + " - " + Epoch.epochTime() * 1000 + " = " + (epochTimeALong - (Epoch.epochTime() * 1000)));
-                epochTimeUnity = (Epoch.epochTime() * 1000).ToString();
-                epochTimeDiferenca = (epochTimeALong - (Epoch.epochTime() * 1000)).ToString();
-
+                ntpcCLient.GetNetworkTimeInSeconds();
+                epochTimeUnity = ntpcCLient.epochTimeUnity;
+                long epochTimeUnityLong = (long)epochTimeUnity;
+                epochTimeDiferenca = (epochTimeALong - epochTimeUnityLong).ToString();
 
             }
             else

@@ -23,7 +23,7 @@ public class AtualizarGUI : MonoBehaviour
     {
         TMP_TextepochTimeA.text = trackingScript.epochTimeA;
         TMP_TextepochTimeB.text = trackingScript.epochTimeB;
-        TMP_TextepochTimeUnity.text = trackingScript.epochTimeUnity;
+        TMP_TextepochTimeUnity.text = trackingScript.epochTimeUnity.ToString();
         TMP_TextepochTimeDiference.text = trackingScript.epochTimeDiferenca;
     }
 

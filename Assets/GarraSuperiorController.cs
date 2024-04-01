@@ -17,7 +17,7 @@ public class GarraSuperiorController : MonoBehaviour
 
     private void TrackingScript_GarraValueChanged(string arg1, string arg2, string arg3, string arg4)
     {
-        print(trackingScript.AberturaGarra);
+        //print(trackingScript.AberturaGarra);
         if (trackingScript.AberturaGarra == "GA")
         {
             MainThreadDispatcher.Instance.Enqueue(() => GarraFechada(false));
