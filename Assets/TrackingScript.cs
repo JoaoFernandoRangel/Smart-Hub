@@ -45,7 +45,7 @@ public class TrackingScript : MonoBehaviour
     public string epochTimeDiferenca;
     [Header("Valores do Potenciômetro da Garra")]
     [SerializeField]
-    private string valorPotenciometroGarra;
+    public string valorPotenciometroGarra;
 
 
 
