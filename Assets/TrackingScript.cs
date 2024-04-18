@@ -104,6 +104,8 @@ public class TrackingScript : MonoBehaviour
         }        
         else if (topic == "garra" && message.Contains("%%"))
         {
+            print("ProcessGarraMessage");
+
             ProcessPotenciometroMessage(message);
         }
         
@@ -154,7 +156,7 @@ public class TrackingScript : MonoBehaviour
         }
     }
 
-
+    //1713462309876%%14-45-09%%265,629%%-3,436%%45,296%%-18,497%%GA%%1713462310011
     private void ProcessGarraMessage(string message)
     {
         string[] garraValues = message.Split(new[] { "%%" }, StringSplitOptions.RemoveEmptyEntries);
@@ -214,12 +216,14 @@ public class TrackingScript : MonoBehaviour
             GarraValueChanged?.Invoke(GarraX, GarraY, GarraZ, RotacaoGarra);
         }
     }
+
+    //%%GARRA%%14:41:35%%1713451295%%3254
     private void ProcessPotenciometroMessage(string message)
     {
         string[] garraValues = message.Split(new[] { "%%" }, StringSplitOptions.RemoveEmptyEntries);
-
         if (garraValues.Length >= 4)
         {
+
             // Obtém o último valor da mensagem
             string ultimoValor = garraValues[3];
 
