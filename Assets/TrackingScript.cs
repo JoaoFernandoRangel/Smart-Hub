@@ -96,7 +96,7 @@ public class TrackingScript : MonoBehaviour
 
         if (topic == "pistao" && message.Contains("PISTAO"))
         {
-            ProcessPistaoMessage(message);
+            UpdatePistaoValuesFromMessage(message);
         }
         else if (topic == "xyzr" && message.Contains("%%"))
         {
@@ -114,26 +114,41 @@ public class TrackingScript : MonoBehaviour
 
         }
     }
-
-    private void ProcessPistaoMessage(string message)
+    //%%PISTAO%%14:25:46%%1713450346%%A01B01C11D01
+    private void UpdatePistaoValuesFromMessage(string message)
     {
-        string[] msgParts = message.Split(new[] { "%%", "%%" }, StringSplitOptions.RemoveEmptyEntries);
-        if (msgParts.Length >= 4)
+        // Verifica se a mensagem começa com "%%PISTAO%%" e divide em partes
+        string[] msgParts = message.Split(new[] { "%%" }, StringSplitOptions.RemoveEmptyEntries);
+
+        // Verifica se há partes suficientes na mensagem
+        if (msgParts.Length >= 2)
         {
+            // A quarta parte contém os valores do pistão
             string pistaoValues = msgParts[3];
 
-            for (int i = 0; i < pistaoValues.Length; i += 3)
+            // Loop através dos valores do pistão
+            for (int i = 0; i < pistaoValues.Length - 2; i += 3)
             {
+                // Extrai o nome do pistão e o valor do pistão
                 char pistaoName = pistaoValues[i];
-                string pistaoValueStr = pistaoValues.Substring(i + 1, 2);
 
-                if (char.IsLetter(pistaoName) && int.TryParse(pistaoValueStr, out int pistaoValue))
+                // Verifica se ainda há caracteres suficientes para extrair o valor do pistão
+                if (i + 2 < pistaoValues.Length)
                 {
-                    UpdatePistaoValues(pistaoName, pistaoValueStr);
-                }
-                else
-                {
-                    // print($"Error parsing Pistão {pistaoName} value.");
+                    string pistaoValueStr = pistaoValues.Substring(i + 1, 2);
+
+                    // Verifica se o nome do pistão é uma letra e se o valor é um número
+                    if (char.IsLetter(pistaoName) && int.TryParse(pistaoValueStr, out int pistaoValue))
+                    {
+                        // Atualiza os valores do pistão usando o método existente
+                        UpdatePistaoValues(pistaoName, pistaoValueStr);
+                    }
+                    else
+                    {
+                        // Caso contrário, há um erro na análise do valor do pistão
+                        // Você pode lidar com isso de acordo com sua lógica
+                        // print($"Error parsing Pistão {pistaoName} value.");
+                    }
                 }
             }
         }

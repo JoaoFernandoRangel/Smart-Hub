@@ -69,7 +69,7 @@ public class NTPCLient : MonoBehaviour
         // Calculando o Epoch time em segundos
         var epochTimeInSeconds = (networkDateTime - new DateTime(1970, 1, 1)).TotalSeconds;
 
-        print("NTP Data: " + ntpData);
+       // print("NTP Data: " + ntpData);
         print("Network DateTime: " + networkDateTime);
         print("Epoch Time in Miliseconds: " + epochTimeInSeconds * 1000);
         epochTimeUnity = (Int64)(epochTimeInSeconds * 1000);
